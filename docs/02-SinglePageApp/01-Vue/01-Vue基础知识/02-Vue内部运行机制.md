@@ -1,5 +1,6 @@
 **1 目标**
 * Vue内部运行机制
+![Vue内部运行机制](https://upload-images.jianshu.io/upload_images/7510511-c2ae527501cf39f7.png)
 
 **2 笔记**
 * Vue内部运行机制流程图  
