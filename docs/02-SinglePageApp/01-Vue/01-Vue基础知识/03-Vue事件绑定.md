@@ -8,7 +8,7 @@
     **使用：**
     > * `<v-on:事件名 = 函数名>` 或 `<@事件名 = 函数名>`
 
-* 事件修饰符
+* 事件修饰符  
     **.stop：**
     > * 阻止单击事件冒泡(`event.preventDefault`)
 
@@ -24,7 +24,7 @@
     **.once：**
     > * 只触发一次
 
-* 按键修饰符
+* 按键修饰符  
     **.enter、.tab、.delete、.esc、.space、.up、.down、.left、.right**
 
 * 事件委托
