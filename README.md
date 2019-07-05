@@ -15,3 +15,4 @@
 >>>> [**04 Watch And Computed**](https://github.com/lotosv2010/Learn-WebFullStack/blob/master/docs/Markdown/03-SinglePageApp/01-Vue/01-Vue%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/4-Watch%20And%20Computed.md)  
 >>>> [**05 Vue生命周期**](https://github.com/lotosv2010/Learn-WebFullStack/blob/master/docs/Markdown/03-SinglePageApp/01-Vue/01-Vue%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/5-Vue%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.md)  
 >>>> [**06 Vue组件及通讯**](https://github.com/lotosv2010/Learn-WebFullStack/blob/master/docs/Markdown/03-SinglePageApp/01-Vue/01-Vue%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/6-Vue%E7%BB%84%E4%BB%B6%E5%8F%8A%E9%80%9A%E8%AE%AF.md)  
+>>>> [**07 Vue内置动画**](https://github.com/lotosv2010/Learn-WebFullStack/blob/master/docs/Markdown/03-SinglePageApp/01-Vue/01-Vue%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/7-Vue%E5%86%85%E7%BD%AE%E5%8A%A8%E7%94%BB.md)  

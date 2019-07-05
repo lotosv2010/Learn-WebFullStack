@@ -2,66 +2,94 @@
 * 熟悉Vue动画
 
 **2 笔记**
-* 熟悉Vue动画  
-    **定义**
-    > * 组件是`Vue.js`最强大的功能之一
-    > * 可以扩展`HTML`元素，封装可重用代码
-    > * 在较高层面上是自定义的元素，`Vue.js`的编译器为它添加特殊功能
-    > * 在有些情况下也可以是原生HTML元素的形式，以`is`特性扩展  
-    ![组件定义](https://cn.vuejs.org/images/components.png)
-
-    **创建组件**
-    > * 调用`Vue.extend()`,创建名为`myComp`的组件，`template`定义模板的标签，模板的内容需写在该标签下
+* Vue过渡动画  
+    **Vue过度动画**
+    > * `Vue`在插入、更新或者移除`DOM`时，提供多种不同方式的应用过渡效果
+    > * Vue提供了内置的过度封装组件，该组件用于包裹要实现过渡效果的组件
     ```
-        var myComp = Vue.extend({
-            template: '<div>这是我的组件</div>'
+    <div id="databinding">
+        <button v-on:click="show=!show">点我</button>
+        <transition name="fade">
+            <p v-show="show" v-bind:style="styleobj">动画实例</p>
+        </transition>
+    </div>
+    <stript type="text/javascript>
+        var vm = new Vue({
+            el: '#databinding',
+            data: {
+                show: true,
+                styleobj: {
+                    fontSize: '30px',
+                    color: 'red'
+                }
+            },
+            methods:{}
         })
-    ```  
-    > * `template`标签创建，需加上`id`属性
-    ```
-        <template id="myComp">
-            <div>这是template标签构建的组件</div>
-        </template>
-    ``` 
-    > * `script`标签创建，需加`id`属性，同事还得加`type="text/x-template"`不执行编译里面的代码
-    ```
-        <script type="text/x-template" id="myComp">
-            <div>这是script标签构建的组件</div>
-        </script>
-    ``` 
-
-    **组件注册 — 全局**
-    > * 调用`Vue.extend()`创建名为`myComp`的组件全局注册  
-    ```
-        Vue.component('my-comp', myComp)
-    ``` 
-    > * `template`及`script`标签构建的组件全局注册  
-    ```
-        Vue.component('my-comp', {
-            template: '#myComp'
-        })
+    </stript>
+    <style>
+    .fade-enter-active,.fade-leave-active {
+        transition: opacity 2s;
+    }
+    .fade-enter,.fade-leave-to {
+        opacity: 0;
+    }
+    </style>
     ```
 
-    **组件注册 — 局部**
-    > * 调用`Vue.extend()`创建名为`myComp`的组件局部注册(只能在注册该组件的实例中使用，一处注册，一处使用)  
+    **Vue动画过程**
+    ![Vue动画过程](https://cn.vuejs.org/images/transition.png)
+    > * v-enter  
+    > * v-enter-active  
+    > * v-enter-to  
+    > * v-leave  
+    > * v-leave-active  
+    > * v-leave-to  
+
+    **js钩子**
+    > * 钩子函数可以结合`CSS` `transitions/animations`使用，也可以单独使用  
+    > * 当只用`JavaScript`过渡时，在`enter`和`leave`中必须使用done进行回调。否则，它们将被同步调用，过渡会立即完成  
     ```
-        var app = new Vue({
-            el: '#app',
-            components: {
-                'my-comp': myComp
-            }
-        })
-    ``` 
-    > * `template`及`script`标签构建的组件局部注册  
-    ```
-        var app = new Vue({
-            el: '#app',
-            components: {
-                'my-comp': {
-                    template: '#myComp'
+    <div>
+        <button v-on:click="show=!show">点我</button>
+        <transition
+            v-on:before-enter="beforeEnter"
+            v-on:enter="enter"
+            v-on:leave="leave"
+            v-bind:css="false"
+        >
+            <p v-if="show">Vue动画实例 js 钩子</p>
+        </transition>
+    </div>
+    <stript type="text/javascript>
+        var vm = new Vue({
+            el: '#databinding',
+            data: {
+                show: true
+            },
+            methods:{
+                beforeEnter(el) {
+                    // 定义当前实现动画的初始化位置
+                    el.style.transform = 'translate(100px, 0)'
+                },
+                enter(el, done) {
+                    // 设置一下刷新状态
+                    el.offsetWidth;
+                    // 设置动画的结束位置
+                    el.style.transform = 'translate(0px, 0)'
+                    // 手动调用一下done方法，有这个方法去决定动画是否结束了
+                    // 否则动画的消失会有延迟
+                    done()
+                },
+                leave(el, done) {
+                    // 将动画的状态恢复设置
                 }
             }
         })
+    </stript>
+    <style>
+    .show {
+        transition: all 2s ease;
+    }
     ```
 
 **3 问题库**
