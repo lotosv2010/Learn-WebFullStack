@@ -14,3 +14,4 @@
 >>>> [**03 Vue事件绑定**](https://github.com/lotosv2010/Learn-WebFullStack/blob/master/docs/02-SinglePageApp/01-Vue/01-Vue%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/03-Vue%E4%BA%8B%E4%BB%B6%E7%BB%91%E5%AE%9A.md)  
 >>>> [**04 Watch And Computed**](https://github.com/lotosv2010/Learn-WebFullStack/blob/master/docs/02-SinglePageApp/01-Vue/01-Vue%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/4-Watch%20And%20Computed.md)  
 >>>> [**05 Vue生命周期**](https://github.com/lotosv2010/Learn-WebFullStack/blob/master/docs/02-SinglePageApp/01-Vue/01-Vue%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/5-Vue%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.md)  
+>>>> [**06 Vue组件及通讯**](https://github.com/lotosv2010/Learn-WebFullStack/blob/master/docs/02-SinglePageApp/01-Vue/01-Vue%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/5-Vue%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.md)  
