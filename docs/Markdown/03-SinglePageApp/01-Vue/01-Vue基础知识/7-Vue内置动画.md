@@ -38,12 +38,12 @@
 
     **Vue动画过程**
     ![Vue动画过程](https://cn.vuejs.org/images/transition.png)
-    > * v-enter  
-    > * v-enter-active  
-    > * v-enter-to  
-    > * v-leave  
-    > * v-leave-active  
-    > * v-leave-to  
+    > * v-enter:定义进入过渡开始状态，在元素被插入时生效，在下一帧移除  
+    > * v-enter-active:定义进入过渡的结束状态，在元素被插入时生效，在 `transition/animation` 完成之后移除  
+    > * v-enter-to:<mark>2.1.8版及以上</mark>定义进入过渡的结束状态，在元素被插入之后下一帧生效(与此同时`v-enter`被移除)，在过渡/动画完成后移除  
+    > * v-leave:定义离开过渡的开始状态，在离开过渡被触发时生效，在下一帧移除  
+    > * v-leave-active:定义离开过渡的结束状态，在离开过渡被触发时生效，在 `transition/animation` 完成之后移除  
+    > * v-leave-to:<mark>2.1.8版及以上</mark>定义离开过渡的结束状态，在离开过渡被触发之后下一帧生效(与此同时`v-leave`被移除)，在过渡/动画完成后移除  
 
     **js钩子**
     > * 钩子函数可以结合`CSS` `transitions/animations`使用，也可以单独使用  
