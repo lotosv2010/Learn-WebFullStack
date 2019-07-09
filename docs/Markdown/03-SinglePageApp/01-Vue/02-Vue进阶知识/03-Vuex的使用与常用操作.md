@@ -1,96 +1,87 @@
 
 **1 目标**
-* 了解路由搭建
-* 了解路由的一些基本操作
+* 了解`Vuex`
+* 了解`Vuex`的一些基本操作
 
 **2 笔记**
-* 了解路由搭建  
-    **Vue-router**  
-    > * 路由，其实就是<mark>指向</mark>的意思，也可以说是一种<mark>映射</mark>
-    >> * 例： `Home`按钮 => `home`内容，`about`按钮 => `about`内容  
-    > * 所以在页面上有两个部分：点击部分，点击后显示内容的部分  
+* 了解`Vuex`  
+    **官方说法**  
+    > * `Vuex`是一个专门`Vue.js`应用程序开发的状态管理模式  
+    > * 它采用集中式存储管理应用的所有组件的状态，并以相应的规则，保证状态以一种可预测的方式发生变化  
 
-    **基于`Vue-router`快速构建**  
-    > * `01` 安装`Vue-router`
+    **个人理解**  
+    > * `Vuex`是用来管理组件之间通信的一个插件
+
+* 基于`Vuex`快速构建  
+    **步骤**  
+    > * `01` 安装Vuex  
     > * `02` 构建页面
-    > * `03` 实现一个页面路由  
+    > * `03` 实现一个`demo`  
 
-* 了解路由的一些基本操作  
-    **动态路由匹配**
-    > * 我们经常需要把某种模式匹配到所有路由，全部映射到同一组件  
-    >> * 例如：有一个User组件，对于所有ID各种不相同的用户，都要使用这个组件来渲染  
-    >> * 可以在Vue-router的路由路径中使用"动态路径参数"(dynamic segment)来达到这个效果  
+* `Vuex`  
+    **`store`子对象**
+    > * `state`: 用于存储数据，类似`vue`实例的`data`属性  
+    > * `mutations`: 唯一修改`state`的方法，修改过程是同步的  
+    > * `actions`: 发出事件，事件监听程序一般会调用`mutations`对`state`进行修改，`action`事件本身是异步的
+    > * `getters`: 用于对`state`的数据进行筛选，过滤  
     ```
-    const User = {
-        template: `<div>User</div>`
-        // template: `<div>User {{ $route.params.id}}</div>`
-    }
-    const router = new VueRouter({
-        routes: [
-            // 动态路径参数以冒号开头
-            {
-                path: `/user/:id`,
-                component: User
+    const store = new Vuex.Store ({
+        state: {
+            // 存放组件之间共享的数据
+            name: 'store',
+            age: '18'
+        },
+        mutations: {
+            // mutations方法必须是同步方法
+            // 显示的更改state里面的数据
+            change(state, val) {
+                state.age += val
             }
-        ]
-    })
-    ```
-
-    **编程式的导航**
-    > * 使用`<router-link>`创建a标签  
-    > * 借助`router`的实例方法，通过编写代码实现  
-    >> * `router.push`  
-    >> * `router.replace`  
-    >> * `router.go`  
-    ```
-    // 字符串
-    router.push('home')
-
-    // 对象
-    router.push({path: 'home'})
-
-    // 命名的路由
-    router.push({
-        name: 'user,
-        params: {
-            userId: '123'
+        },
+        getters: {
+            // 获取数据的方法
+            getAge(state) {
+                return state.age
+            }
+        },
+        actions: {
+            // 异步处理
+            add(context, val) {
+                setTimeout(() => {
+                    // 提交事件
+                    context.commit('change', val)
+                })
+            }
         }
     })
 
-    // 带查询参数，变成 /register?plan=private
-    router.push({
-        path: 'register',
-        query: {
-            plan: 'private'
+    Vue.component('demo', {
+        template: `
+                    <div>
+                        <p @click='changeAge'>姓名： {{ name }}  年龄：{{ age }}</p>
+                        <button @click='changeAgeAsync'>change</button>
+                    </div>
+                    `,
+        computed: {
+            name() {
+                return this.$store.state.name
+            },
+            age() {
+                return this.$store.state.age
+            }
+        },
+        methods: {
+            changeAge() {
+                // 在组件里提交
+                this.$store.commit('change', 10)
+            },
+            changeAgeAsync() {
+                // 在组件里派发事件 changeAgeAsync-->
+                // actions里的add函数被触发-->mutations里的change函数触发
+                this.$store.dispatch('add', 1)
+            }
         }
     })
-    ```
-
-    **导航守卫**
-    > * `vue-router`所提供的导守卫`(Navigation Guards)`主要来通过跳转或者取消的方式守卫导航  
-    > * 有多种机会植入路由导航过程中：  
-    >> * 全局的  
-    >> * 单个路由独享的  
-    >> * 组件级  
-    > * 主要掌握：  
-    >> * <mark>全局前置守卫</mark>  
-    >> * <mark>全局后置钩子</mark>  
-    ```
-    // 全局前置守卫
-    const router = new VueRouter({...})
-    router.beforeEach((to, from, next) => {
-        // ...
-    })
-
-    // 全局后置钩子
-    router.afterEach((to, from) => {
-        // ...
-    })
-
-    // 说明：
-    // to: Route:即将要进入的目标路由对象
-    // from: Route: 当前导航正要离开的路由
-    // next: Function: 哟定要调用该方法来 resolve 这个钩子，执行效果依赖 next 方法的调用参数
     ```
 
 **3 问题库**
