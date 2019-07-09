@@ -22,3 +22,8 @@
 >>>> [**02 路由搭建&Vue-router常用操作**](https://github.com/lotosv2010/Learn-WebFullStack/blob/master/docs/Markdown/03-SinglePageApp/01-Vue/02-Vue%E8%BF%9B%E9%98%B6%E7%9F%A5%E8%AF%86/02-%E8%B7%AF%E7%94%B1%E6%90%AD%E5%BB%BA%26Vue-router%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C.md)  
 >>>> [**03 Vuex的使用与常用操作**](https://github.com/lotosv2010/Learn-WebFullStack/blob/master/docs/Markdown/03-SinglePageApp/01-Vue/02-Vue%E8%BF%9B%E9%98%B6%E7%9F%A5%E8%AF%86/03-Vuex%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C.md)  
 >>>> [**04 Axios的使用**](https://github.com/lotosv2010/Learn-WebFullStack/blob/master/docs/Markdown/03-SinglePageApp/01-Vue/02-Vue%E8%BF%9B%E9%98%B6%E7%9F%A5%E8%AF%86/04-Axios%E7%9A%84%E4%BD%BF%E7%94%A8.md)  
+
+>>> **03 Vue源码分析**  
+>>>> [**01 Vue生命周期钩子函数执行原理分析**](https://github.com/lotosv2010/Learn-WebFullStack/blob/master/docs/Markdown/03-SinglePageApp/01-Vue/03-Vue%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/01-Vue%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E9%92%A9%E5%AD%90%E5%87%BD%E6%95%B0%E6%89%A7%E8%A1%8C%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90.md)  
+>>>> [**02 Vue响应式系统搭建**](https://github.com/lotosv2010/Learn-WebFullStack/blob/master/docs/Markdown/03-SinglePageApp/01-Vue/03-Vue%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/02-Vue%E5%93%8D%E5%BA%94%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%90%AD%E5%BB%BA.md)  
+>>>> [**03 模板编译渲染函数原理分析**](https://github.com/lotosv2010/Learn-WebFullStack/blob/master/docs/Markdown/03-SinglePageApp/01-Vue/03-Vue%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/03-Vue%20%E6%A8%A1%E6%9D%BF%E7%BC%96%E8%AF%91%E6%B8%B2%E6%9F%93%E5%87%BD%E6%95%B0%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90.md)
