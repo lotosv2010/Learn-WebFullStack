@@ -73,6 +73,26 @@
         return hasOwnProperty.call(obj, key)
     }
 
+    // mergeDataOrFn
+    function mergeDataOrFn(parentVal, childVal, vm) {
+        if(!vm) {
+            /**
+             * 1.子组件中的parentVal, childVal都应该是函数
+             * 
+             * 会遇到的情况：
+             * 1.parentVal === undefined return childVal
+             * 2.childVal === undefined return parentVal
+             * 3.parentVal === function() {}  childVal === function() {} mergeData 将两者返回值对象合并成一个
+             *  */ 
+        } else {
+            return function mergerdInstanceDataFn() {
+                return typeof childVal === 'function' ?
+                    childVal.call(vm, vm) :
+                    childVal;
+            }
+        }
+    }
+
     
     // mergeOptions
     function mergeOptions(parent, child, vm) {
@@ -118,6 +138,21 @@
             }
         }
     }
+    // initData
+    function initData(vm) {
+        
+    }
+
+    // initState
+    function initState(vm) {
+        var opts = vm.$options;
+        if (opts.data) {
+            initData(vm)
+        } else {
+            observe(vm.data = {}, true)
+        }
+    }
+
 
     // initMixin
     function initMixin(Vue) {
@@ -129,9 +164,11 @@
             vm.$options = mergeOptions(Vue.options, options || {}, vm);
             callHook(vm, 'beforeCreate')
             callHook(vm, 'beforeCreated')
+            initState(vm); // 数据的初始化操作
         }
     }
 
+    
     // initGlobalAPI
     function initGlobalAPI(Vue) {
         var configDef = {}
