@@ -50,7 +50,11 @@
             if(childVal && typeof childVal !== 'function') {
                 warn('data must be a function')
             }
+            // 处理子组件data的选项
+            return mergeDataOrFn(parentVal, childVal)
         }
+        // 处理根组件data的选项
+        return mergeDataOrFn(parentVal, childVal, vm)
     }
     
     // warn
