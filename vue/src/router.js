@@ -24,5 +24,42 @@ export default new Router({
       // which is lazy-loaded when the route is visited.
       component: () => import(/* webpackChunkName: "about" */ './views/About.vue'),
     },
+    {
+      path: '/keep',
+      name: 'keep',
+      component:() => import('./views/KeepAliveDemo.vue')
+    },
+    {
+      path: '/kr',
+      name: 'keepRouter',
+      component:() => import('./views/KeepRouter.vue'),
+      children: [
+        {
+          path: '/kr/a',
+          name: 'KRA',
+          component: () => import('./components/A.vue')
+        },
+        {
+          path: '/kr/b',
+          name: 'KRB',
+          component: () => import('./components/B.vue')
+        }
+      ]
+    },
+    {
+      path: '/da',
+      name: 'DemoA',
+      component:() => import('./views/DemoA.vue')
+    },
+    {
+      path: '/db',
+      name: 'DemoB',
+      component:() => import('./views/DemoB.vue')
+    },
+    {
+      path: '/extends',
+      name: 'Extends',
+      component:() => import('./views/Extends.vue')
+    }
   ],
 });
