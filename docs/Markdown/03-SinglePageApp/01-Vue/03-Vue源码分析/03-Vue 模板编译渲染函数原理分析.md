@@ -1,37 +1,19 @@
-
 **1 目标**
-* 了解`Vue-cli`
-* `Vue-cli`与`webpack`
+* 理解模板编译
+* 理解渲染函数
 
 **2 笔记**
-* 了解`Vue-cli`  
-    **`Vue-cli`是`Vue.js`的脚手架，用于自动生成`vue.js+webpack`的项目模板，分为两种：**  
-    > * `vue init webpack-simple` 项目名  
-    > * `vue init webpack` 项目名  
+* [全局概览](https://www.jianshu.com/p/5fdb4c536071) 
+    ![全局概览](https://upload-images.jianshu.io/upload_images/12812588-713fcf2ad4d242ea.png?imageMogr2/auto-orient/)
 
-    **`Vue-cli`可以快速构建单页面应用**  
-    > * 涉及内容很多，如`webpack、npm、nodejs`等  
+* 编译  
+    * `compile`编译可以分成 **`parse`**、 **`optimize`** 与 **`generate`** 三个阶段，最终需要得到`render function`。  
+      * **`parase`**：会用正则等方式解析template模板中的指令、`class`、`style`等数据，形成AST。 
+      * **`optimize`**：主要作用是标记`static`静态节点。
+      * **`generate`**：是将AST转化成`render function`字符串的过程，得到结果是`render`的字符串以及`staticRenderFns`字符串 
 
-* 基于`Vue-cli`快速构建 — 实战步骤  
-    > * `01` 安装node.js  
-    > * `02` 下载服务器框架  
-    > * `03` 实现一个静态服务器
+      经过`parse`、`optimize`与`generate`这三个阶段以后，组件中就会存在渲染`VNode`所需的`render function`了
 
-* 项目结构  
-    > * `build` 里面是一些操作文件，使用`npm run *`时其实执行的就是这里的文件  
-    > * `config` 配置文件，执行文件需要的配置信息  
-    > * `src` 资源文件，所有的组件以及所有的图片
-    > * `static` 静态文件目录
-    > * `test` 测试文件目录
-    > * `index.html` 入口文件 
-
-* `Vue-cli`与`webpack`  
-    **webpack：**
-    > * 前端资源模块化管理和打包工具  
-    > * 可以将很多松散的模块，按依赖和规则打包成符合生产环境部署的前端资源  
-    > * 可以将按需加载的模块进行代码分割，等实际需要的时候载异步加载   
-
-    **Vue-cli：**
-    > * 用配置好的模板迅速搭建项目工程，省去自己配置webpack配置文件的基本内容  
 
 **3 问题库**
+* 编译的三个阶段的理解
