@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
+      <!-- <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link> |
       <router-link to="/keep">Keep Alive</router-link> |
       <router-link to="/kr">Keep Router</router-link> |
@@ -9,7 +9,7 @@
       <router-link to="/db">Demo B</router-link> |
       <router-link to="/extends">extends</router-link> |
       <router-link to="/plugin">plugin</router-link> |
-      <router-link to="/render">render</router-link>
+      <router-link to="/render">render</router-link> -->
     </div>
     <router-view/>
   </div>

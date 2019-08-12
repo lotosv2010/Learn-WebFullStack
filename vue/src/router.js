@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Home from './views/Home.vue';
+import Netease from './views/netease/Index.vue';
 
 Vue.use(Router);
 
@@ -10,8 +10,13 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: Home,
+      name: 'Netease',
+      component: Netease,
+    },
+    {
+      path: '/demoHome',
+      name: 'DemoHome',
+      component:() => import('./views/Home.vue')
     },
     {
       path: '/about',
