@@ -60,6 +60,16 @@ export default new Router({
       path: '/extends',
       name: 'Extends',
       component:() => import('./views/Extends.vue')
+    },
+    {
+      path: '/plugin',
+      name: 'Plugin',
+      component:() => import('./views/Plugin.vue')
+    },
+    {
+      path: '/render',
+      name: 'RenderDemo',
+      component:() => import('./views/RenderDemo.vue')
     }
   ],
 });

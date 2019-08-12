@@ -7,7 +7,9 @@
       <router-link to="/kr">Keep Router</router-link> |
       <router-link to="/da">Demo A</router-link> |
       <router-link to="/db">Demo B</router-link> |
-      <router-link to="/extends">extends</router-link>
+      <router-link to="/extends">extends</router-link> |
+      <router-link to="/plugin">plugin</router-link> |
+      <router-link to="/render">render</router-link>
     </div>
     <router-view/>
   </div>
