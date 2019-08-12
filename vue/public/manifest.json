@@ -1,6 +1,6 @@
 {
-  "name": "fullstack",
-  "short_name": "fullstack",
+  "name": "vue",
+  "short_name": "vue",
   "icons": [
     {
       "src": "./img/icons/android-chrome-192x192.png",
