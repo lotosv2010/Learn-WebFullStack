@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import FormData from '@/components/common/FormData'
+import FormData from '@/components/learning/common/FormData'
 export default {
   name: 'DemoA',
   data() {

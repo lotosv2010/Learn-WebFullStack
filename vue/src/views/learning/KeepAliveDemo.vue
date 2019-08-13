@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import KeepA from '@/components/A';
-import KeepB from '@/components/B';
+import KeepA from '@/components/learning/A';
+import KeepB from '@/components/learning/B';
 export default {
   name: 'KeepAliveDemo',
   components: {

@@ -1,6 +1,6 @@
 export default {
   created() {
-   console.log('mixins', 'created')
+    console.log('mixins', 'created')
   },
   data() {
     return {
