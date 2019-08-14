@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Netease from './views/netease/Index.vue';
+import Netease from './views/netease/Login.vue';
 
 Vue.use(Router);
 
@@ -12,6 +12,13 @@ export default new Router({
       path: '/',
       name: 'Netease',
       component: Netease,
+      children: [
+        {
+          path: '/index',
+          name: 'Index',
+          component: () => import('./views/netease/Index.vue')
+        }
+      ]
     },
     {
       path: '/learning',
