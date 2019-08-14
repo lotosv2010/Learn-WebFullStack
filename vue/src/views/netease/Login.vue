@@ -18,7 +18,7 @@
           <h2 class="title">网易云登录</h2>
         </el-form-item>
         <el-form-item label="用户名">
-          <el-input v-model="form.name" placeholder="用户名"></el-input>
+          <el-input v-model="form.name" v-focus placeholder="用户名"></el-input>
         </el-form-item>
         <el-form-item label="密码">
           <el-input v-model="form.password" placeholder="密码"></el-input>
@@ -48,6 +48,7 @@
 </template>
 
 <script>
+import { login } from '@/api/netease/login.js'
 export default {
   name: 'Login',
   data() {
@@ -61,13 +62,34 @@ export default {
       }
     }
   },
+  directives: {
+    focus: {
+      inserted(el) {
+        const input = el.querySelector('input')
+        input.focus()
+      },
+      update(el) {
+        const input = el.querySelector('input')
+        const spanDom = el.querySelector('span')
+        const val = input.value
+        const span = document.createElement('span')
+        span.innerText = '用户名为六位'
+        // span.style = 'color:red;'
+        span.style.color = 'red'
+        input.style.borderColor = val.length > 6 ? 'red' : '#DCDFE6'
+        val.length > 6 ? (!spanDom && el.appendChild(span)) : (spanDom && el.removeChild(spanDom))
+      }
+    },
+  },
   mounted() {
     this.createCode()
   },
   methods: {
     login() {
-      console.log(this.form)
       this.validateCode()
+      login(this.form,(response) => {
+        console.log(response)
+      })
     },
     createCode() {
       //验证码的长度
@@ -94,7 +116,7 @@ export default {
         this.createCode();
       } else {
         this.message('success', '验证码正确')
-      }   
+      }
     },
     message(type, msg) {
       this.$message({
