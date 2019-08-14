@@ -1,30 +1,49 @@
 <template>
-  <el-container>
-    <el-form ref="login" :model="form" label-width="100px">
-      <el-form-item label="用户名">
-        <el-input v-model="form.name" placeholder="用户名"></el-input>
-      </el-form-item>
-      <el-form-item label="密码">
-        <el-input v-model="form.password" placeholder="密码"></el-input>
-      </el-form-item>
-      <el-form-item label="验证码">
-        <el-input v-model="form.code" placeholder="验证码">
-          <template slot="append">
-            <p class="code" @click.self="createCode">{{ form.verificationCode }}</p>
-          </template>
-        </el-input>
-      </el-form-item>
-      <el-form-item label="记住我">
-        <el-radio-group v-model="form.isRemberMe">
-          <el-radio :label="true">是</el-radio>
-          <el-radio :label="false">否</el-radio>
-        </el-radio-group>
-      </el-form-item>
-      <el-form-item>
-        <el-button type="primary" @click="login">登录</el-button>
-        <el-button>重置</el-button>
-      </el-form-item>
-    </el-form>
+  <el-container class="login">
+    <el-header>
+      <img src="../../assets/logo@2x.png" alt="" class="logo">
+      <div class="title">登录</div>
+      <div class="links">
+        <el-link type="primary">网易云首页</el-link>
+        <el-divider direction="vertical"></el-divider>
+        <el-link type="primary">帮助与文档</el-link>
+      </div>
+    </el-header>
+    <el-main>
+      <div class="img">
+        <img src="../../assets/login-left.png" alt="">
+      </div>
+      <el-form ref="login" :model="form" label-width="100px">
+        <el-form-item>
+          <h2 class="title">网易云登录</h2>
+        </el-form-item>
+        <el-form-item label="用户名">
+          <el-input v-model="form.name" placeholder="用户名"></el-input>
+        </el-form-item>
+        <el-form-item label="密码">
+          <el-input v-model="form.password" placeholder="密码"></el-input>
+        </el-form-item>
+        <el-form-item label="验证码">
+          <el-input v-model="form.code" placeholder="验证码">
+            <template slot="append">
+              <p class="code" @click.self="createCode">{{ form.verificationCode }}</p>
+            </template>
+          </el-input>
+        </el-form-item>
+        <el-form-item label="记住我">
+          <el-radio-group v-model="form.isRemberMe">
+            <el-radio :label="true">是</el-radio>
+            <el-radio :label="false">否</el-radio>
+          </el-radio-group>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="login">登录</el-button>
+        </el-form-item>
+        <el-form-item>
+          <el-button>重置</el-button>
+        </el-form-item>
+      </el-form>
+    </el-main>
   </el-container>
 </template>
 
@@ -88,19 +107,63 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.el-container {
-  width: 100%;
+.login {
+  background: url("../../assets/bg.png") no-repeat;
+  background-size: cover;
   height: calc(100vh);
-  background-color: aliceblue;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  .el-form {
-    background-color: lavender;
-    padding: 20px 40px 0px 0;
-    .code {
-      width: 30px;
-      height: 100%;
+  width: 100%;
+  .el-header{
+    height: 70px !important;
+    padding: 0 85px;
+    background: #fff;
+    img {
+      float: left;
+      max-width: 300px;
+      height: 30px;
+      padding-top: 15px;
+      padding-bottom: 25px;
+      cursor: pointer;
+    }
+    .title {
+      float: left;
+      margin-top: 19px;
+      margin-left: 10px;
+      font-size: 20px;
+    }
+    .links {
+      float: right;
+      height: 70px;
+      display: flex;
+      align-items: center;
+    }
+  }
+  .el-main {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    .el-form {
+      background-color: #ffffff;
+      // width: 405px;
+      // height: 476px;
+      padding: 40px 40px 20px 0;
+      .title {
+        margin-left: -80px;
+        font-size: 20px;
+      }
+      .code {
+        width: 30px;
+        height: 100%;
+      }
+      .el-button {
+        width: 140%;
+        margin-left: -80px;
+      }
+    }
+    .img {
+      img {
+        width: 440px;
+        height: 300px;
+      }
     }
   }
 }

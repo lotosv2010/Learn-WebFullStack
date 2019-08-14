@@ -14,7 +14,9 @@ import {
   Loading,
   MessageBox,
   Message,
-  Notification
+  Notification,
+  Link,
+  Divider
 } from 'element-ui'
 
 Vue.prototype.$ELEMENT = { size: 'small' };
@@ -30,6 +32,8 @@ Vue.use(FormItem)
 Vue.use(Input)
 Vue.use(Radio)
 Vue.use(RadioGroup)
+Vue.use(Link)
+Vue.use(Divider)
 
 Vue.use(Loading.directive);
 
