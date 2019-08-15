@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import { login } from '@/api/netease/login.js'
+import { getUser } from '@/api/netease/login.js'
 export default {
   name: 'Login',
   data() {
@@ -82,14 +82,23 @@ export default {
     },
   },
   mounted() {
+    // console.log(process.env)
     this.createCode()
+    this.getCookie()
   },
   methods: {
-    login() {
-      this.validateCode()
-      login(this.form,(response) => {
-        console.log(response)
-      })
+    async login() {
+      try {
+        this.validateCode()
+        const res = await getUser(this.form)
+        if (res.data.code === 200) {
+          console.log(res)
+          const { username, password, remberMe } = res.data.data
+          this.setCookie(username, password, remberMe, 6)
+        }
+      } catch (error) {
+        console.error(error)
+      }
     },
     createCode() {
       //验证码的长度
@@ -123,6 +132,33 @@ export default {
         message: msg,
         type: type
       });
+    },
+    setCookie(username, password, remberMe, exdays) {
+      let exDate = new Date()
+      exDate.setTime(exDate.getTime() + 24 * 60 * 60 * exdays)
+      document.cookie = `username=${username};${exDate.toGMTString()}`
+      document.cookie = `password=${password};${exDate.toGMTString()}`
+      document.cookie = `remberMe=${remberMe};${exDate.toGMTString()}`
+    },
+    clearCookie() {
+      this.setCookie('', '', false, -1)
+    },
+    getCookie() {
+      const co = document.cookie
+      debugger
+      if(co.length > 0) {
+        const arr = co.split(';')
+        for (let i = 0; i < arr.length; i++) {
+          const arrVal = arr[i].split('=')
+          arrVal[0] === 'username' ?
+          this.form.name = arrVal[1] : 
+          arrVal[0] === 'password' ?
+          this.form.password = arrVal[1] :
+          arrVal[0] === 'remberMe' ?
+          this.form.isRemberMe = arrVal[1] :
+          {}
+        }
+      }
     }
   }
 };

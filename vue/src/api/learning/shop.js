@@ -1,4 +1,4 @@
-import { postRequest } from '../api'
+import { postRequest } from './api'
 
 // 查询商品
 export function queryGoods (callback, params) {

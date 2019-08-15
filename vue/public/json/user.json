@@ -1,0 +1,12 @@
+{
+  "code": 200,
+  "success": true,
+  "data": {
+    "username": "robin",
+    "role": "admin",
+    "sex": "man",
+    "password": "123456",
+    "remberMe": true,
+    "mobile": "18259278645"
+  }
+}
