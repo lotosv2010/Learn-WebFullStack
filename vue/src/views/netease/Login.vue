@@ -21,7 +21,7 @@
           <el-input v-model="form.name" v-focus placeholder="用户名"></el-input>
         </el-form-item>
         <el-form-item label="密码">
-          <el-input v-model="form.password" placeholder="密码"></el-input>
+          <el-input v-model="form.password" type="password" placeholder="密码"></el-input>
         </el-form-item>
         <el-form-item label="验证码">
           <el-input v-model="form.code" placeholder="验证码">
@@ -91,10 +91,13 @@ export default {
       try {
         this.validateCode()
         const res = await getUser(this.form)
-        if (res.data.code === 200) {
+        if (res.code === 200) {
           console.log(res)
-          const { username, password, remberMe } = res.data.data
+          const { username, password, remberMe } = res.data
+          this.clearCookie(username, password, remberMe)
           this.setCookie(username, password, remberMe, 6)
+          this.setToken(res.data.token)
+          this.$router.push({ path: '/index'})
         }
       } catch (error) {
         console.error(error)
@@ -145,20 +148,19 @@ export default {
     },
     getCookie() {
       const co = document.cookie
-      debugger
       if(co.length > 0) {
         const arr = co.split(';')
         for (let i = 0; i < arr.length; i++) {
           const arrVal = arr[i].split('=')
-          arrVal[0] === 'username' ?
-          this.form.name = arrVal[1] : 
-          arrVal[0] === 'password' ?
-          this.form.password = arrVal[1] :
-          arrVal[0] === 'remberMe' ?
-          this.form.isRemberMe = arrVal[1] :
-          {}
+          const key = arrVal[0].trim()
+          if (key === 'username') this.form.name = arrVal[1]
+          if (key === 'password') this.form.password = arrVal[1]
+          if (key === 'remberMe') this.form.isRemberMe = arrVal[1] === 'true'
         }
       }
+    },
+    setToken(token) {
+      sessionStorage.setItem('token', token)
     }
   }
 };

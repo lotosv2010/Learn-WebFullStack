@@ -5,7 +5,7 @@
       <el-container>
         <el-aside width="200px">Aside</el-aside>
         <el-container>
-          <el-main>Main</el-main>
+          <el-main>{{ this.list }}</el-main>
           <el-footer>Footer</el-footer>
         </el-container>
       </el-container>
@@ -14,7 +14,30 @@
 </template>
 
 <script>
-export default {};
+import { getList } from '@/api/netease/list.js'
+export default {
+  name: 'Index',
+  data() {
+    return {
+      list: []
+    }
+  },
+  mounted() {
+    this.getList()
+  },
+  methods: {
+    async getList() {
+      try {
+        const res = await getList()
+        if(res.code === 200) {
+          this.list = res.data
+        }
+      } catch (error) {
+        console.error(error)
+      }
+    }
+  }
+};
 </script>
 
 <style scoped>

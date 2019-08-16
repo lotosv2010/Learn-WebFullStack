@@ -2,11 +2,12 @@
   "code": 200,
   "success": true,
   "data": {
-    "username": "robin",
+    "username": "robin1",
     "role": "admin",
     "sex": "man",
     "password": "123456",
     "remberMe": true,
-    "mobile": "18259278645"
+    "mobile": "18259278645",
+    "token": "{%22username%22:%22gwb%22%2C%22data%22:{%22success%22:true%2C%22data%22:{%22id%22:4%2C%22createBy%22:%22%22%2C%22createFrom%22:%22%22%2C%22createDatetime%22:%222019-05-05%2016:09:18.000%22%2C%22updateBy%22:%22%22%2C%22updateFrom%22:%22%22%2C%22updateDatetime%22:%222019-08-16%2013:36:03.000%22%2C%22userCode%22:%22gwb%22%2C%22userName%22:%22gwb%22%2C%22password%22:null%2C%22email%22:%22sfuat888@sfuat.com%22%2C%22phone%22:%2218777777777%22%2C%22sex%22:%22male%22%2C%22available%22:%221%22%2C%22subscribe%22:%221%22%2C%22language%22:%22zh%22%2C%22resetPassword%22:%22%22%2C%22style%22:%22black%22%2C%22image%22:%22%22%2C%22organization%22:%22apple%22%2C%22currentLoginTime%22:1565933804434%2C%22lastLoginTime%22:1565860271541%2C%22smallImage%22:%22%22%2C%22loginCount%22:107%2C%22roles%22:[%22apple_admin%22%2C%22super%22]%2C%22permissions%22:[%22systemLog:*%22%2C%22sysUser:*%22%2C%22tenant:*%22%2C%22upload:*%22]}%2C%22language%22:null}}"
   }
 }
