@@ -5,7 +5,12 @@
       <el-container>
         <el-aside width="200px">Aside</el-aside>
         <el-container>
-          <el-main>{{ this.list }}</el-main>
+          <el-main>
+            <div class="div-demo">{{ this.list }}</div>
+            <el-button type="primary" v-display-key="`a`">我是A用户的权限</el-button>
+            <el-button type="primary" v-display-key="`b`">我是B用户的权限</el-button>
+            <el-button type="primary" v-display-key="`c`">我是C用户的权限</el-button>
+          </el-main>
           <el-footer>Footer</el-footer>
         </el-container>
       </el-container>
@@ -40,7 +45,9 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+// 局部引入
+// @import '@/assets/style/index.scss';
 .el-header, .el-footer {
   background-color: #B3C0D1;
   color: #333;
@@ -59,5 +66,8 @@ export default {
   color: #333;
   text-align: center;
   line-height: 160px;
+  .div-demo {
+    @include fontColor;
+  }
 }
 </style>

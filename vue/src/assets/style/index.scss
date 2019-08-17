@@ -1,0 +1,8 @@
+@mixin fontColor {
+    color: red;
+}
+
+@mixin width($width) {
+    width: $width;
+    margin: 0 auto;
+}
