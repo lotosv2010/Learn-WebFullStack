@@ -9,7 +9,6 @@ export function login(data) {
   })
 }
 
-
 export function getUser(params) {
   // /api/v1/login
   return baseRequest(url.getUser, {

@@ -22,9 +22,9 @@ Vue.use(Router);
 // 进阶写法
 const subRouters = []
 function importAll(r) {
-  console.log(r)
+  // console.log(r)
   r.keys().forEach(key => {
-    console.log(key)
+    // console.log(key)
     subRouters.push(r(key).default)
   });
 }

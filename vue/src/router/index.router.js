@@ -1,5 +1,8 @@
 export default {
   path: '/index',
   name: 'Index',
-  component: () => import('@/views/netease/Index.vue')
+  component: () => import('@/views/netease/Index.vue'),
+  meta: {
+    requireAuth: true
+   }
 }

@@ -9,6 +9,23 @@ import './plugins/element.js'
 
 Vue.config.productionTip = false;
 
+// 路由拦截
+let token = sessionStorage.getItem('token')
+
+router.beforeEach((to, from, next) => {
+  if (to.meta.requireAuth) {
+    if (token) {
+      next()
+    } else {
+      next({
+        path: '/'
+      })
+    }
+  } else {
+    next()
+  }
+})
+
 new Vue({
   router,
   store,

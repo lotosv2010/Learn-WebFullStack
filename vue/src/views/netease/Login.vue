@@ -81,6 +81,12 @@ export default {
       }
     },
   },
+  watch: {
+    // 一对多
+  },
+  computed: {
+    // 多对一
+  },
   mounted() {
     // console.log(process.env)
     this.createCode()
@@ -92,7 +98,6 @@ export default {
         this.validateCode()
         const res = await getUser(this.form)
         if (res.code === 200) {
-          console.log(res)
           const { username, password, remberMe } = res.data
           this.clearCookie(username, password, remberMe)
           this.setCookie(username, password, remberMe, 6)
