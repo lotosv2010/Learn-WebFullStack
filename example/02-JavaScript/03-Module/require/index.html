@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>require</title>
+</head>
+<body>
+    <script src="./require.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        require.config({
+            paths: {
+                'a': '../js/require/a',
+                'b': '../js/require/b'
+            }
+        })
+
+        require(['a', 'b'], function(a, b) {
+            console.log('index', a)
+            console.log('index', b)
+            a.hello()
+        })
+    </script>
+</body>
+</html>
