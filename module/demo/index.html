@@ -9,7 +9,9 @@
 <body>
     <script src="../dist/ve-module.js"></script>
     <script>
-        vem.use(['a.js', 'b.js'], function() {
+        vem.use(['a.js', 'b.js'], function(a,b) {
+            console.log('index', a);
+            console.log('index', b);
             console.log('vem...')
         })
     </script>
