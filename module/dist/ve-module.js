@@ -167,7 +167,7 @@
     // 伪递归
     _waitings = mod._waitings;
     var uri, m;
-    for (const url in _waitings) {
+    for (const uri in _waitings) {
       m = cache[uri];
 
       m._remain -= this._waitings[uri];
