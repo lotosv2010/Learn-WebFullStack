@@ -1,11 +1,12 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import List from './List/'
-import Filter from './Filter/';
-import Func from './Func/';
-import HT from './HTML/';
-import Lifecycle from './Lifecycle/';
+// import List from './List/'
+// import Filter from './Filter/';
+// import Func from './Func/';
+// import HT from './HTML/';
+// import Lifecycle from './Lifecycle/';
+import Pro from './Props/'
 
 
 function App() {
@@ -16,11 +17,12 @@ function App() {
         <p>
           欢迎学习react.
         </p>
-        <List name={'react'}></List>
+        {/* <List name={'react'}></List>
         <Filter></Filter>
         <Func />
         <HT />
-        <Lifecycle />
+        <Lifecycle /> */}
+        <Pro />
         <a
           className="App-link"
           href="https://reactjs.org"
