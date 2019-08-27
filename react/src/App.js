@@ -1,6 +1,12 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import List from './List/'
+import Filter from './Filter/';
+import Func from './Func/';
+import HT from './HTML/';
+import Lifecycle from './Lifecycle/';
+
 
 function App() {
   return (
@@ -10,6 +16,11 @@ function App() {
         <p>
           欢迎学习react.
         </p>
+        <List name={'react'}></List>
+        <Filter></Filter>
+        <Func />
+        <HT />
+        <Lifecycle />
         <a
           className="App-link"
           href="https://reactjs.org"
