@@ -1,0 +1,28 @@
+.loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black; 
+  opacity: 0.8;
+  color: red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-img {
+  animation: loading-img-spin infinite 2s linear;
+  height: 3vmin;
+  pointer-events: none;
+}
+
+@keyframes loading-img-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
