@@ -37,7 +37,7 @@ class Decorator extends React.Component {
   render() {
     return (
       <div>
-        ES6
+        ES6-Decorator
       </div>
     )
   }
