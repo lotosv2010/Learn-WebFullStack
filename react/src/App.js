@@ -9,7 +9,9 @@ import './App.css';
 // import Pro from './Props/'
 // import DOM from './DOM/'
 // import Inp from './Inp/'
-import Todo from './Todo/'
+// import Todo from './Todo/'
+// import ES from './ES6/'
+import Decorator from './Decorator/'
 
 
 function App() {
@@ -27,8 +29,10 @@ function App() {
         <Lifecycle />
         <Pro /> 
         <DOM />
-        <Inp /> */}
+        <Inp />
         <Todo />
+        <ES /> */}
+        <Decorator />
         <a
           className="App-link"
           href="https://reactjs.org"
