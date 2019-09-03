@@ -1,0 +1,23 @@
+@import '../theme/index.scss';
+
+.gui__input {
+  font-size: 0%;
+  background: white;
+  border: 1px solid #cccccc;
+  input {
+    outline: none;
+    border: none;
+  }
+  &.size-large input {
+    line-height: 40px;
+    font-size: 18px;
+  }
+  &.size-middle input{
+    line-height: 30px;
+    font-size: 14px;
+  }
+  &.size-small input{
+    line-height: 20px;
+    font-size: 12px;
+  }
+}

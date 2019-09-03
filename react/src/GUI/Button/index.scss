@@ -1,0 +1,13 @@
+@import '../theme/index.scss';
+
+.gui__btn {
+  &--primary {
+    background: $primaryColor;
+    color: aliceblue;
+    border-color: #1890ff;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.12);
+  }
+  &--warning {
+    background: $warningColor;
+  }
+}

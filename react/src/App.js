@@ -11,8 +11,10 @@ import './App.css';
 // import Inp from './Inp/'
 // import Todo from './Todo/'
 // import ES from './ES6/'
-import Decorator from './Decorator/'
-
+// import Decorator from './Decorator/'
+import Icon from './GUI/Icon/';
+import Button from './GUI/Button/'
+import Input from './GUI/Input/'
 
 function App() {
   return (
@@ -31,8 +33,12 @@ function App() {
         <DOM />
         <Inp />
         <Todo />
-        <ES /> */}
-        <Decorator />
+        <ES />
+        <Decorator /> */}
+        <div><Icon name="shanchu1"/></div>
+        <div><Button type="primary" icon="chenggong">提交</Button></div>
+        <div><Button type="warning" icon="chenggong">提交</Button></div>
+        <div><Input size="small" value="" prefix="shangchuan" /></div>
         <a
           className="App-link"
           href="https://reactjs.org"
