@@ -16,6 +16,9 @@ import './App.css';
 // import Button from './GUI/Button/'
 // import Input from './GUI/Input/'
 // import Table from './GUI/Table/'
+// import HighComponent from './02/HighComponent/';
+// import Loading from './02/Loading/';
+import Hooks from './02/Hooks/'
 
 // let dataSource = [
 //   {name: 'ryan', age: 30, sex: 'man'},
@@ -95,7 +98,10 @@ class A extends React.Component {
               ]}
               dataSource={dataSource}
             />
-          </div> */}
+          </div>
+          <HighComponent />
+          <Loading /> */}
+          <Hooks name={'function component'} />
           <a
             className="App-link"
             href="https://reactjs.org"

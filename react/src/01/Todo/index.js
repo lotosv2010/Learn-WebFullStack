@@ -1,6 +1,6 @@
 import React from 'react'
-import TodoList from '../Components/TodoList';
-import Action from '../Components/Action/'
+import TodoList from '../../Components/TodoList';
+import Action from '../../Components/Action'
 
 export default class index extends React.Component {
   constructor(props) {

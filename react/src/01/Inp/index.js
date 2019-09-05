@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import inp from '../Components/Input/'
+import inp from '../../Components/Input'
 
 class DOM extends Component {
   constructor (props) {

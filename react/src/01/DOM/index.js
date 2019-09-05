@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import loading from '../Components/Loading/'
+import loading from '../../Components/Loading'
 
 class DOM extends Component {
   constructor (props) {
