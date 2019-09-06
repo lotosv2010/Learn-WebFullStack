@@ -18,7 +18,7 @@ import './App.css';
 // import Table from './GUI/Table/'
 // import HighComponent from './02/HighComponent/';
 // import Loading from './02/Loading/';
-import Hooks from './02/Hooks/'
+import Hooks from './02/Hooks/';
 
 // let dataSource = [
 //   {name: 'ryan', age: 30, sex: 'man'},
