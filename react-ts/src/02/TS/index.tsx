@@ -1,4 +1,5 @@
 import * as React from 'react';
+import './index.scss';
 
 interface IProps {
   name: string
@@ -24,10 +25,12 @@ class Animal extends React.Component<IProps, IState> {
     const { name } = this.props
     const { value, inputValue } = this.state
     return (
-      <div>
+      <div className="TSDiv">
         <h2>Hello TS {name}-{value}</h2>
         <p><input value={inputValue} onChange={this.handleChange}/></p>
-        <p><button onClick={this.handleClick}>ADD</button></p>
+        <p><button onClick={(e: React.MouseEvent<HTMLButtonElement>): void => {
+          console.log(this.state.inputValue)
+        }}>ADD</button></p>
       </div>
     );
   }
