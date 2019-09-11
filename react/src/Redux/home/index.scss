@@ -1,0 +1,19 @@
+.wrap {
+  width: 100%;
+  padding: 120px 0;
+  text-align: center;
+  .title {
+    font-size: 22px;
+    font-weight: normal;
+    color: #ffffff;
+    cursor: pointer;
+  }
+  .logo {
+    width: 100%;
+    animation: App-logo-spin infinite 20s linear;
+  }
+  @keyframes App-logo-spin {
+    from { transform: rotate(0deg) }
+    to { transform: rotate(360deg) }
+  }
+}

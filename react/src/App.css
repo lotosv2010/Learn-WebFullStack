@@ -19,6 +19,10 @@
   color: white;
 }
 
+.App-header-display {
+  display: none;
+}
+
 .App-link {
   color: #61dafb;
 }

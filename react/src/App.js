@@ -18,7 +18,8 @@ import './App.css';
 // import Table from './GUI/Table/'
 // import HighComponent from './02/HighComponent/';
 // import Loading from './02/Loading/';
-import Hooks from './02/Hooks/';
+// import Hooks from './02/Hooks/';
+import Home from './Redux/home/index';
 
 // let dataSource = [
 //   {name: 'ryan', age: 30, sex: 'man'},
@@ -39,12 +40,12 @@ class A extends React.Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          {/* <img src={logo} className="App-logo" alt="logo" /> */}
+        <header className="App-header-display">
+          {/* <img src={logo} className="App-logo" alt="logo" />
           <p>
             欢迎学习react.
           </p>
-          {/* <List name={'react'}></List>
+          <List name={'react'}></List>
           <Filter></Filter>
           <Func />
           <HT />
@@ -100,7 +101,7 @@ class A extends React.Component {
             />
           </div>
           <HighComponent />
-          <Loading /> */}
+          <Loading />
           <Hooks name={'function component'} />
           <a
             className="App-link"
@@ -109,7 +110,10 @@ class A extends React.Component {
             rel="noopener noreferrer"
           >
             Learn React
-          </a>
+          </a> */}
+        </header>
+        <header className="App-header">
+          <Home />
         </header>
       </div>
     )
