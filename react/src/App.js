@@ -19,13 +19,16 @@ import './App.css';
 // import HighComponent from './02/HighComponent/';
 // import Loading from './02/Loading/';
 // import Hooks from './02/Hooks/';
-import Home from './Redux/home/index';
+// import Home from './Redux/home/index';
 
 // let dataSource = [
 //   {name: 'ryan', age: 30, sex: 'man'},
 //   {name: 'ryan2', age: 32, sex: 'man'},
 //   {name: 'ryan3', age: 33, sex: 'man'}
 // ]
+
+
+import Layout from './Layout/index';
 
 class A extends React.Component {
   constructor(props) {
@@ -103,6 +106,7 @@ class A extends React.Component {
           <HighComponent />
           <Loading />
           <Hooks name={'function component'} />
+          <Home />
           <a
             className="App-link"
             href="https://reactjs.org"
@@ -112,9 +116,7 @@ class A extends React.Component {
             Learn React
           </a> */}
         </header>
-        <header className="App-header">
-          <Home />
-        </header>
+        <Layout />
       </div>
     )
   }
