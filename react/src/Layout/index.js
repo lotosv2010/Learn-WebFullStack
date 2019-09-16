@@ -1,6 +1,10 @@
 import React from 'react';
 import { Layout, Menu, Icon } from 'antd';
 import './index.scss'
+
+// import HashHistory from '../03/HashHistory/';
+import BrowserHistory from '../03/BrowserHistory/';
+
 const { Header, Sider, Content } = Layout;
 
 class AppLayout extends React.Component {
@@ -54,6 +58,7 @@ class AppLayout extends React.Component {
             }}
           >
             Content
+            <BrowserHistory />
           </Content>
         </Layout>
       </Layout>
