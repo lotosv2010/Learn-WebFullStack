@@ -3,7 +3,10 @@ import { Layout, Menu, Icon } from 'antd';
 import './index.scss'
 
 // import HashHistory from '../03/HashHistory/';
-import BrowserHistory from '../03/BrowserHistory/';
+// import BrowserHistory from '../03/BrowserHistory/';
+// import Animation from '../03/Animation/'
+// import Animate from '../03/Animate/'
+import ReactSpring from '../03/ReactSpring/'
 
 const { Header, Sider, Content } = Layout;
 
@@ -57,8 +60,21 @@ class AppLayout extends React.Component {
               minHeight: 280,
             }}
           >
-            Content
-            <BrowserHistory />
+            {/* <Animate in='bounceInLeft' out='bounceOutDown'
+              remove={e => this.setState({
+                visible: false
+              })}
+              render={(remove) => {
+                return (
+                  <div>
+                    <span>Hello World</span> <button onClick={remove}>remove</button>
+                  </div>
+                )
+              }}
+            >
+              
+            </Animate> */}
+            <ReactSpring></ReactSpring>
           </Content>
         </Layout>
       </Layout>
