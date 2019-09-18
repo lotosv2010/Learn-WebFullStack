@@ -6,7 +6,10 @@ import './index.scss'
 // import BrowserHistory from '../03/BrowserHistory/';
 // import Animation from '../03/Animation/'
 // import Animate from '../03/Animate/'
-import ReactSpring from '../03/ReactSpring/'
+// import ReactSpring from '../03/ReactSpring/'
+// import CanvasDemo from '../03/Canvas/'
+// import SvgDemo from '../03/Svg/'
+import Bar from '../03/Charts/'
 
 const { Header, Sider, Content } = Layout;
 
@@ -74,7 +77,7 @@ class AppLayout extends React.Component {
             >
               
             </Animate> */}
-            <ReactSpring></ReactSpring>
+            <Bar />
           </Content>
         </Layout>
       </Layout>
