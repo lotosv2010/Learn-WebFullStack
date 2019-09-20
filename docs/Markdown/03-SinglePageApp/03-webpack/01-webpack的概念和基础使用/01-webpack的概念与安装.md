@@ -1,42 +1,33 @@
 
 **1 目标**
-* React初始
-* React生态
-* 代码规范
+* 前端工程化
+* webpack主要功能
+* webpack的基础使用
 
 **2 笔记**
-* React初始  
-    **开发环境**
-    > * node 8  
-    > * webpack babel es6  
-    > * vscode  
+* 前端工程化  
+    **什么是前端工程化？**
+    > * 工程化是系统化、模块化、规范化的过程。  
+    > * 工程化主要解决"如何提高整个系统生产效率"的问题  
 
-* React生态  
-    **awesome-react**
-    > * 脚手架  
-    > * 可视化  
-    > * 数据管理  
-    > * 各类UI组件库  
-    > * 企业级解决方案  
+    **前端工程化的主要改变在那些方面？**
+    > * 人员  
+    > * 工具
+    > * 写代码的方式  
 
-    **UI组件库**
-    > * ant-d  
-    > * element  
-    > * material  
+* webpack主要功能  
+    **webpack主要功能**
+    > * 编译，包括JavaScript的编译，css的编译  
+    > * 文件的压缩，打包，合并，公共模块提取等  
+    > * 图片等资源的处理如压缩，合并雪碧图等  
+    > * Tree-shaking等优化JavaScript工具  
+    > * webpack-dev-server，Eslint，热更新等帮助开发的工具  
 
-* 代码规范  
-    **standard.js规范**
-    > * `npm install standard --save-dev`  
-    > * `npm install snazzy --save-dev`  
-    > * 配置package.json,添加一条名为lint的`npm script "scripts"`: `{ "lint": "standard --varbose | snazzy" }`  
-    > * 使用编辑器插件，实时检查代码规范  
-    > * `git pre-commit`钩子，在每次commit之前检查代码规范  
+* webpack的基础使用  
+    **安装node**
 
-    **bem css规范**
-    > * `.person{}`  
-    > * `.person__hand{}`  
-    > * `.person--female{}`  
-    > * `.person--female__hand{}`  
-    > * `.person__hand--left{}`  
+    **通过`npm install webpack -g` `npm install webpack-cli -g`全局安装webpack**
+
+    **输入`webpack -v`能查看到版本号，则表示安装成功**
 
 **3 问题库**
