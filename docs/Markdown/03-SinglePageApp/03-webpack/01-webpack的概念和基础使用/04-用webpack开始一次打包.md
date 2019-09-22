@@ -1,42 +1,43 @@
 
 **1 目标**
-* React初始
-* React生态
-* 代码规范
+* 不利用配置文件打包  
+* 利用配置文件打包
+* 局部webpack与全局webpack
 
 **2 笔记**
-* React初始  
-    **开发环境**
-    > * node 8  
-    > * webpack babel es6  
-    > * vscode  
+* 不利用配置文件打包  
+    **直接指定出口与入口**
+    > * `webpack-cli --entry <entry> --output <output>`  
 
-* React生态  
-    **awesome-react**
-    > * 脚手架  
-    > * 可视化  
-    > * 数据管理  
-    > * 各类UI组件库  
-    > * 企业级解决方案  
+    **打包分析**
+    > * ![打包分析]()  
 
-    **UI组件库**
-    > * ant-d  
-    > * element  
-    > * material  
+* 利用配置文件打包  
+    **webpack.config.js**
+    ```javascript
+    var webpack = require('webpack')
+    var PurifyWebpack = require('purifycss-webpack)
+    module.exports = {
+        entry: {},
+        output: {},
+        module: {
+            rules: []
+        },
+        plugins: []
+    }
+    ```
 
-* 代码规范  
-    **standard.js规范**
-    > * `npm install standard --save-dev`  
-    > * `npm install snazzy --save-dev`  
-    > * 配置package.json,添加一条名为lint的`npm script "scripts"`: `{ "lint": "standard --varbose | snazzy" }`  
-    > * 使用编辑器插件，实时检查代码规范  
-    > * `git pre-commit`钩子，在每次commit之前检查代码规范  
+    **命令**
+    > * webpack: 默认找webpack.config.js  
+    > * webpack <config文件>  
 
-    **bem css规范**
-    > * `.person{}`  
-    > * `.person__hand{}`  
-    > * `.person--female{}`  
-    > * `.person--female__hand{}`  
-    > * `.person__hand--left{}`  
+* 局部webpack与全局webpack  
+    **全局webpack**
+    > * 概念：通过 `npm install webpack -g`命令安装的webpack就是全局的webpack，-g指令就是在npm全局目录下安装包  
+    > * 作用：全局webpack是必须安装的，我们在命令行直接执行webpack指令时，使用的就是全局的webpack去完成的。  
+
+    **局部webpack**
+    > * 概念：局部的webpack是指在项目文件夹下安装的webpack，即安装在项目文件夹里的node_modules里  
+    > * 作用：全局webpack有且只有一个，但实际情况中，不同项目的webpack版本可能完全不同，当我们项目需求的webpack版本和我们全局的webpack不一致时，就需要安装局部的webpack。  
 
 **3 问题库**
