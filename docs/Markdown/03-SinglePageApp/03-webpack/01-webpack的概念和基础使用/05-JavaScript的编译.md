@@ -10,7 +10,7 @@
 
     **`Babel-preset`**  
     > * `Babel-preset`是存储JavaScript不同标准的插件，通过使用正确的presets，告诉babel按照哪个规范编译  
-    > * `npm install @babel-preset-env --save-dev`  
+    > * `npm install @babel/preset-env --save-dev`  
     > * `Babel-preset`的target配置：target是preset的核心配置，告诉preset编译的具体目标
 
     **es6方法的编译**  
