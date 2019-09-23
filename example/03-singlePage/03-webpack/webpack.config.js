@@ -1,6 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   entry: {
     app: './src/app.js',
@@ -9,6 +10,11 @@ module.exports = {
   output: {
     filename: './js/[name].js',
     path: path.resolve(__dirname ,'dist')
+  },
+  resolve: {
+    alias: {
+      a2: './js/app2.js'
+    }
   },
   module: {
     rules: [
@@ -91,6 +97,15 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new ExtractTextPlugin({
       filename: '[name].min.css'
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template:'./index.html',
+      // chunks:['app', 'app2'],
+      // inject: true,
+      // minify: {
+      //   collapseWhitespace: true
+      // }
     })
   ]
 }
