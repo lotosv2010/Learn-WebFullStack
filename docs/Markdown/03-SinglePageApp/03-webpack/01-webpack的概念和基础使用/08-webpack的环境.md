@@ -25,11 +25,4 @@
     **webpack4中更简单的环境区分**
     > * `webpack --mode production/development/none`  
 
-    **bem css规范**
-    > * `.person{}`  
-    > * `.person__hand{}`  
-    > * `.person--female{}`  
-    > * `.person--female__hand{}`  
-    > * `.person__hand--left{}`  
-
 **3 问题库**
