@@ -1,36 +1,29 @@
 
 **1 目标**
-* React初始
-* React生态
-* 代码规范
+* webpack的环境系统
+* 不同环境下的配置编写
+* webpack4中的环境区分
 
 **2 笔记**
-* React初始  
-    **开发环境**
-    > * node 8  
-    > * webpack babel es6  
-    > * vscode  
+* webpack的环境系统  
+    **为什么要区分环境**
+    > * 因为在不同的场景下可能需要不同的配置，使用不同的功能，所以要区分环境  
+    > * 开发模式：会额外的用到一些调试功能，比如webpack-dev-server，但是为了加快调试速度，可能不会去用上压缩，tree-shaking之类的功能  
+    > * 生产模式：为了减少文件体积，会使用压缩，tree-shaking等功能，但是不要加webpack-dev-server或者eslint这样的调试工具  
 
-* React生态  
-    **awesome-react**
-    > * 脚手架  
-    > * 可视化  
-    > * 数据管理  
-    > * 各类UI组件库  
-    > * 企业级解决方案  
+    **如何告诉webpack当前的环境**
+    > * `webpack --env envname`  
 
-    **UI组件库**
-    > * ant-d  
-    > * element  
-    > * material  
+* 不同环境下的配置编写  
+    **如何编写不同的噢诶之文件来区分环境**
+    > * 编写一个开发环境下的配置文件  
+    > * 编写一个生产环境下的配置文件  
+    > * 在基础配置引入开发和生产配置  
+    > * 判断env参数合并对应的配置  
 
-* 代码规范  
-    **standard.js规范**
-    > * `npm install standard --save-dev`  
-    > * `npm install snazzy --save-dev`  
-    > * 配置package.json,添加一条名为lint的`npm script "scripts"`: `{ "lint": "standard --varbose | snazzy" }`  
-    > * 使用编辑器插件，实时检查代码规范  
-    > * `git pre-commit`钩子，在每次commit之前检查代码规范  
+* webpack4中的环境区分  
+    **webpack4中更简单的环境区分**
+    > * `webpack --mode production/development/none`  
 
     **bem css规范**
     > * `.person{}`  
