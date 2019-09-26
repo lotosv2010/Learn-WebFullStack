@@ -1,42 +1,42 @@
 
 **1 目标**
-* React初始
-* React生态
-* 代码规范
+* `webpack`原理  
+* `loader`原理  
+* 结果文件分析  
+* `Dev-server`原理分析  
+* 热更新原理  
 
 **2 笔记**
-* React初始  
-    **开发环境**
-    > * node 8  
-    > * webpack babel es6  
-    > * vscode  
+* `webpack`原理  
+    **`webpack`是利用什么来打包**
+    > * `webpack`依赖于node的环境与文件操作系统  
+    > * `webpack`的打包过程，其实就是利用node去读取文件，然后进行一些字符串处理后，再利用node去写入文件  
+  
+    **`webpack`打包流程解析**
+    > * 读取配置文件  
+    > * 注册内部插件与配置插件  
+    > * loader编译  
+    > * 组织模块  
+    > * 生成最终文件导出  
 
-* React生态  
-    **awesome-react**
-    > * 脚手架  
-    > * 可视化  
-    > * 数据管理  
-    > * 各类UI组件库  
-    > * 企业级解决方案  
+* `loader`原理
+    **`loader`是如何生效的**
+    > * loader其实是一个方法，接受一个字符串，方法内部处理完后再返回字符串  
+    > * `module.export = function(source) { return source}`  
 
-    **UI组件库**
-    > * ant-d  
-    > * element  
-    > * material  
+* 结果文件分析  
+    **打包结果分析**
+    **如何排队模块**  
 
-* 代码规范  
-    **standard.js规范**
-    > * `npm install standard --save-dev`  
-    > * `npm install snazzy --save-dev`  
-    > * 配置package.json,添加一条名为lint的`npm script "scripts"`: `{ "lint": "standard --varbose | snazzy" }`  
-    > * 使用编辑器插件，实时检查代码规范  
-    > * `git pre-commit`钩子，在每次commit之前检查代码规范  
+* `Dev-server`原理分析
+    **`Dev-server`**
+    > * `Dev-server`利用express和一个中间件`webpack-dev-middleware`来开启服务，然后开启的server会执行打包出来的代码  
 
-    **bem css规范**
-    > * `.person{}`  
-    > * `.person__hand{}`  
-    > * `.person--female{}`  
-    > * `.person--female__hand{}`  
-    > * `.person__hand--left{}`  
+* 热更新原理
+    **步骤**
+    > * 开启服务  
+    > * 建立一个websocket链接  
+    > * 发生代码改变，服务通过websocket通知到客户端  
+    > * 客户端替换新代码  
 
 **3 问题库**
