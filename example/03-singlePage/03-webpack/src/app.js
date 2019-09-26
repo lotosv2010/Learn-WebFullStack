@@ -6,9 +6,9 @@ import './app.css'
 import './app2.css'
 // import './app.scss'
 
-new Promise(setTimeout(() => {
-  console.log('p')
-}))
+// new Promise(setTimeout(() => {
+//   console.log('p')
+// }))
 f1()
 let b = 2
 

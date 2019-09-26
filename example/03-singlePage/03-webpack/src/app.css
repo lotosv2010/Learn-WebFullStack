@@ -6,14 +6,18 @@ body {
   color: blue;
 }
 
-:global .border-white {
+/* :global .border-white { */
+.border-white {
   border: 4px solid wheat;
 }
 
-:local .div1 {
+/* :local .div1 { */
+  .div1 {
   width: 150px;
   height: 50px;
   background-color: pink;
   /* composes: border-white; */
-  composes: center from './app2.css'
+  /* composes: center from './app2.css' */
 }
+
+@import './app2.css'

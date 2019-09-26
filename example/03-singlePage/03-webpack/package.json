@@ -5,8 +5,9 @@
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --env production --config webpack.common.js",
-    "dev": "webpack-dev-server --env development --config.common.js"
+    "build": "webpack --env production --config webpack.prod.js",
+    "watch": "webpack --config webpack.dev.js --watch",
+    "start": "webpack-dev-server --env development --config webpack.dev.js --open"
   },
   "keywords": [],
   "author": "",
@@ -17,11 +18,13 @@
     "autoprefixer": "^9.6.1",
     "babel-loader": "^8.0.6",
     "babel-polyfill": "^6.26.0",
+    "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^3.2.0",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "html-webpack-plugin": "^3.2.0",
     "less": "^3.10.3",
     "less-loader": "^5.0.0",
+    "mini-css-extract-plugin": "^0.8.0",
     "node-sass": "^4.12.0",
     "postcss": "^7.0.18",
     "postcss-cssnext": "^3.1.0",
@@ -32,6 +35,7 @@
     "typescript": "^3.6.3",
     "webpack": "^4.40.2",
     "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.8.1",
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {

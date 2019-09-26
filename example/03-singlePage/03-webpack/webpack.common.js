@@ -1,23 +1,30 @@
-const path = require('path')
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const dev = require('./webpack.dev.js')
-const pro = require('./webpack.pro.js')
-const merge = require('webpack-merge')
-module.exports = env => {
-  var common = {
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+// const ExtractTextPlugin = require('extract-text-webpack-plugin');
+// const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+// const UglifyJS = require('uglify-es');
+// const CopyWebpackPlugin = require('copy-webpack-plugin');
+
+
+function resolve (dir) {
+  return path.join(__dirname, dir);
+}
+
+module.exports = function(env, arg) {
+  // 判断是否是开发模式
+  const devMode = env === 'development';
+  const config = {
     entry: {
       app: './src/app.js',
       app2: './src/app2.js'
     },
     output: {
-      filename: './js/[name].js',
-      path: path.resolve(__dirname ,'dist')
+      filename: 'js/[name].bundle.js',
+      chunkFilename: 'js/[name].bundle.js',
+      path: path.resolve(__dirname, 'dist')
     },
-    resolve: {
-      alias: {
-        a2: './js/app2.js'
-      }
-    },
+    mode: 'development',
     module: {
       rules: [
         {
@@ -33,73 +40,89 @@ module.exports = env => {
           }
         },
         {
-          test: /.css$/,
+          test: /\.(sa|sc|c)ss$/,
           use: [
             {
-              loader: 'style-loader',
+              loader: devMode ? 'style-loader': MiniCssExtractPlugin.loader
+            },
+            'css-loader',
+            {
+              loader: 'postcss-loader',
               options: {
-                // insertInto: '.color-blue',
-                // singleton: true,
-                // transform: './transform.js'
+                ident: 'postcss',
+                plugins: [
+                  require('autoprefixer')({
+                    'overrideBrowsersList': [
+                      '>1%', 'last 2 versions'
+                    ]
+                  }),
+                  require('postcss-cssnext')
+                ]
               }
             },
-            {
-              loader: 'css-loader',
-              options: {
-                // modules: true
-                modules: {
-                  // localIdentName: '[path][name]_[local]'
-                  localIdentName: '[local]'
-                }
-              }
-            }
+            'sass-loader',
           ]
         },
         {
-          test: /\.scss$/,
-          use: ExtractTextPlugin.extract({
-            fallback: {
-              loader: 'style-loader',
-              options: {
-                singleton: true
-              }
-            },
-            use: [
-              {
-                loader: 'css-loader',
-                options: {
-                  modules: {
-                    localIdentName: '[local]'
-                  }
-                }
-              },
-              {
-                loader: 'postcss-loader',
-                options: {
-                  ident: 'postcss',
-                  plugins: [
-                    require('autoprefixer')({
-                      'overrideBrowsersList': [
-                        '>1%', 'last 2 versions'
-                      ]
-                    }),
-                    require('postcss-cssnext')
-                  ]
-                }
-              },
-              {
-                loader: 'sass-loader'
-              }
-            ]
-          })
+          test: /\.(png|svg|jpg|gif)$/,
+          use: [
+            'file-loader'
+          ]
+        },
+        {
+          test: /\.(woff|woff2|eot|ttf|otf)$/,
+          use: [
+            'file-loader'
+          ]
+        },
+        {
+          test: /\.(csv|tsv)$/,
+          use: [
+            'csv-loader'
+          ]
+        },
+        {
+          test: /\.xml$/,
+          use: [
+            'xml-loader'
+          ]
         }
       ]
     },
     plugins: [
-      new ExtractTextPlugin({
-        filename: '[name].min.css'
-      })
-    ]
+      new HtmlWebpackPlugin({
+        title: 'Output Management',
+        filename: 'index.html',
+        template: './index.html',
+        minify: {
+          collapseWhitespace: true
+        },
+        inject: true
+      }),
+      new MiniCssExtractPlugin({
+        filename: './css/style.css'
+      }),
+      // 拷贝文件
+      // new CopyWebpackPlugin([
+      //   {
+      //     from: resolve('src/iconfont'),
+      //     to: 'iconfont'
+      //   }
+      // ])
+    ],
+    // 防止重复
+    optimization: {
+      splitChunks: {
+        cacheGroups: {
+          // styles: {
+          //   name: 'styles',
+          //   test: /\.css$/,
+          //   chunks: 'all',
+          //   enforce: true,
+          // },
+        },
+      },
+    }
   }
-  return merge(common, env === 'production' ? pro : dev)
+  return config
 }
