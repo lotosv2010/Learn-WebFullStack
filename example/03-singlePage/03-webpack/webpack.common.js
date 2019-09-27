@@ -20,8 +20,8 @@ module.exports = function(env, arg) {
       app2: './src/app2.js'
     },
     output: {
-      filename: 'js/[name].bundle.js',
-      chunkFilename: 'js/[name].bundle.js',
+      filename: 'js/[name].js',
+      chunkFilename: 'js/[name].js',
       path: path.resolve(__dirname, 'dist')
     },
     mode: 'development',
