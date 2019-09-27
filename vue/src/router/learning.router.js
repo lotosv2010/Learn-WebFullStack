@@ -65,6 +65,11 @@ export default {
       path: '/learning/render',
       name: 'RenderDemo',
       component:() => import('@/views/learning/RenderDemo.vue')
+    },
+    {
+      path: '/learning/clipboard',
+      name: 'ClipboardDemo',
+      component:() => import('@/views/learning/ClipboardDemo.vue')
     }
   ]
 }

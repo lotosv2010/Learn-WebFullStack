@@ -9,7 +9,8 @@
       <router-link to="/learning/db">Demo B</router-link> |
       <router-link to="/learning/extends">extends</router-link> |
       <router-link to="/learning/plugin">plugin</router-link> |
-      <router-link to="/learning/render">render</router-link>
+      <router-link to="/learning/render">render</router-link> |
+      <router-link to="/learning/clipboard">clipboard</router-link>
     </div>
     <router-view/>
   </div>

@@ -16,7 +16,9 @@ import {
   Message,
   Notification,
   Link,
-  Divider
+  Divider,
+  Tabs,
+  TabPane
 } from 'element-ui'
 
 Vue.prototype.$ELEMENT = { size: 'small' };
@@ -34,6 +36,8 @@ Vue.use(Radio)
 Vue.use(RadioGroup)
 Vue.use(Link)
 Vue.use(Divider)
+Vue.use(Tabs)
+Vue.use(TabPane)
 
 Vue.use(Loading.directive);
 

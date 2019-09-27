@@ -5,6 +5,10 @@ import store from './store';
 import './registerServiceWorker';
 import './plugins/custom/'
 import './plugins/element.js'
+
+import gc from 'gw-clipboard'
+Vue.use(gc)
+
 import { checkRights } from './common/userRights.js'
 
 Vue.config.productionTip = false;
