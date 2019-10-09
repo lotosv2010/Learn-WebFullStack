@@ -1,4 +1,5 @@
 // import 'babel-polyfill';
+import path from 'path'
 import './index.ts'
 import f1 from './module1'
 import tool from 'gwb'
@@ -26,3 +27,9 @@ import img1 from '../assets/img/1.jpg'
 const img = new Image()
 img.src = img1
 document.body.appendChild(img)
+
+console.log(path.join(__dirname, 'dist'))
+
+import('./module2.js').then(res => {
+  console.log('异步加载', res)
+})

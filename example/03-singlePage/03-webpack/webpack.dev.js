@@ -3,6 +3,7 @@ const common = require('./webpack.common');
 const webpack = require('webpack');
 
 module.exports = env => merge(common(env), {
+  mode: 'development',
   devtool: 'cheap-module-source-map',
   devServer: {
     port: 9001,

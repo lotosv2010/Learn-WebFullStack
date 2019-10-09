@@ -1,5 +1,4 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 // const ExtractTextPlugin = require('extract-text-webpack-plugin');
 // const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
@@ -17,7 +16,7 @@ module.exports = function(env, arg) {
   const config = {
     entry: {
       app: './src/js/app.js',
-      app2: './src/js/app2.js'
+      // app2: './src/js/app2.js'
     },
     output: {
       filename: 'js/[name].js',
@@ -119,41 +118,6 @@ module.exports = function(env, arg) {
           }
         }
       ]
-    },
-    plugins: [
-      new HtmlWebpackPlugin({
-        title: 'Output Management',
-        filename: 'index.html',
-        template: './index.html',
-        minify: {
-          collapseWhitespace: true
-        },
-        inject: true
-      }),
-      new MiniCssExtractPlugin({
-        filename: '[name].css',
-        chunkFilename: '[id].css'
-      }),
-      // 拷贝文件
-      // new CopyWebpackPlugin([
-      //   {
-      //     from: resolve('src/iconfont'),
-      //     to: 'iconfont'
-      //   }
-      // ])
-    ],
-    // 防止重复
-    optimization: {
-      splitChunks: {
-        cacheGroups: {
-          styles: {
-            name: './css/styles',
-            test: /\.css$/,
-            chunks: 'all',
-            enforce: true,
-          },
-        },
-      },
     }
   }
   return config
