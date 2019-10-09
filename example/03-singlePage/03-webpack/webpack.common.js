@@ -16,8 +16,8 @@ module.exports = function(env, arg) {
   const devMode = env === 'development';
   const config = {
     entry: {
-      app: './src/app.js',
-      app2: './src/app2.js'
+      app: './src/js/app.js',
+      app2: './src/js/app2.js'
     },
     output: {
       filename: 'js/[name].js',
@@ -43,7 +43,10 @@ module.exports = function(env, arg) {
           test: /\.(sa|sc|c)ss$/,
           use: [
             {
-              loader: devMode ? 'style-loader': MiniCssExtractPlugin.loader
+              loader: devMode ? 'style-loader': MiniCssExtractPlugin.loader,
+              options: {
+                publicPath: '../'
+              }
             },
             'css-loader',
             {
@@ -51,6 +54,7 @@ module.exports = function(env, arg) {
               options: {
                 ident: 'postcss',
                 plugins: [
+                  // require('postcss-sprites')(),
                   require('autoprefixer')({
                     'overrideBrowsersList': [
                       '>1%', 'last 2 versions'
@@ -64,10 +68,31 @@ module.exports = function(env, arg) {
           ]
         },
         {
-          test: /\.(png|svg|jpg|gif)$/,
+          test: /\.(png|svg|jpg|jpeg|gif)$/,
           use: [
-            'file-loader'
-          ]
+          {
+            loader: 'url-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'assets/img',
+              // publicPath: 'assets/img',
+              limit: 5000
+            }
+          },
+          {
+            loader: 'img-loader',
+            options: {
+              plugins: [
+                // require('imagemin-pngquant')({
+                //   speed: 2 // 1-11
+                // }),
+                // require('imagemin-mozjpeg')({
+                //   quality: 10 // 1-100
+                // })
+              ]
+            }
+          }
+        ]
         },
         {
           test: /\.(woff|woff2|eot|ttf|otf)$/,
@@ -86,6 +111,12 @@ module.exports = function(env, arg) {
           use: [
             'xml-loader'
           ]
+        },
+        {
+          test: /.\html$/,
+          use: {
+            loader: 'html-loader'
+          }
         }
       ]
     },
@@ -100,7 +131,8 @@ module.exports = function(env, arg) {
         inject: true
       }),
       new MiniCssExtractPlugin({
-        filename: './css/style.css'
+        filename: '[name].css',
+        chunkFilename: '[id].css'
       }),
       // 拷贝文件
       // new CopyWebpackPlugin([
@@ -114,12 +146,12 @@ module.exports = function(env, arg) {
     optimization: {
       splitChunks: {
         cacheGroups: {
-          // styles: {
-          //   name: 'styles',
-          //   test: /\.css$/,
-          //   chunks: 'all',
-          //   enforce: true,
-          // },
+          styles: {
+            name: './css/styles',
+            test: /\.css$/,
+            chunks: 'all',
+            enforce: true,
+          },
         },
       },
     }

@@ -3,9 +3,9 @@ import './index.ts'
 import f1 from './module1'
 import tool from 'gwb'
 
-import './app.css'
-import './app2.css'
-// import './app.scss'
+import '../css/app.css'
+import '../css/app2.css'
+// import '../css/app.scss'
 
 // new Promise(setTimeout(() => {
 //   console.log('p')
@@ -21,3 +21,8 @@ const obj = {
   age: 18
 }
 console.log('tool', tool.deepClone(obj))
+
+import img1 from '../assets/img/1.jpg'
+const img = new Image()
+img.src = img1
+document.body.appendChild(img)
