@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --env production --config webpack.prod.js",
     "watch": "webpack --config webpack.dev.js --watch",
-    "start": "webpack-dev-server --env development --config webpack.dev.js --open"
+    "start": "webpack-dev-server --env development --config webpack.dev.js --open",
+    "dll": "webpack --config webpack.dll.js"
   },
   "keywords": [],
   "author": "",
@@ -43,6 +44,7 @@
     "typescript": "^3.6.3",
     "url-loader": "^2.2.0",
     "webpack": "^4.40.2",
+    "webpack-bundle-analyzer": "^3.5.2",
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.8.1",
     "webpack-merge": "^4.2.2",

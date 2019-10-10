@@ -7,11 +7,14 @@ const webpack = require('webpack');
 // const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const common = require('./webpack.common');
 const WebpackSpriteSmith = require('webpack-spritesmith');
+const wba = require('webpack-bundle-analyzer').BundleAnalyzerPlugin; // 打包分析
 
 module.exports = env => merge(common(env), {
   devtool: 'source-map',
   // mode: 'production',
   plugins: [
+    new webpack.NamedChunksPlugin(),
+    new webpack.NamedModulesPlugin(),
     new CleanWebpackPlugin(),
     new webpack.HashedModuleIdsPlugin(),
     new HtmlWebpackPlugin({
@@ -27,6 +30,10 @@ module.exports = env => merge(common(env), {
       filename: '[name].css',
       chunkFilename: '[id].css'
     }),
+    new wba(),
+    // new webpack.DllReferencePlugin({
+    //   manifest: require('./src/dll/gwb.json')
+    // })
     // 拷贝文件
     // new CopyWebpackPlugin([
     //   {
