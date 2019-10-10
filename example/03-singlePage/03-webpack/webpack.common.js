@@ -28,9 +28,17 @@ module.exports = function(env, arg) {
       rules: [
         {
           test: /\.js$/,
-          use: {
-            loader: 'babel-loader'
-          }
+          use: [
+            {
+              loader: 'babel-loader'
+            },
+            {
+              loader: 'eslint-loader',
+              options: {
+                formatter: require('eslint-friendly-formatter')
+              }
+            }
+          ]
         },
         {
           test: /\.tsx?$/,

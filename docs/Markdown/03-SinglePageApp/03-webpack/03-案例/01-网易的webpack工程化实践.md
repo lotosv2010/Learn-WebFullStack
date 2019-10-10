@@ -1,42 +1,46 @@
 
 **1 目标**
-* React初始
-* React生态
-* 代码规范
+* eslint
+* 一些特别的plugins和loader
+* 环境区分
+* 项目问题解决
 
 **2 笔记**
-* React初始  
-    **开发环境**
-    > * node 8  
-    > * webpack babel es6  
-    > * vscode  
+* eslint  
+    **相关包**
+    > * `Eslint+eslint-loader`-核心内容  
+    > * `Eslint-plugin-html`  
+    > * `Eslint-friendly-formatter`-友好提示  
+    > * `Eslint-config-standard`-代码风格标准，依赖`Eslint-plugin-import`，`Eslint-plugin-node`，`Eslint-plugin-promise`，`Eslint-plugin-standard`  
 
-* React生态  
-    **awesome-react**
-    > * 脚手架  
-    > * 可视化  
-    > * 数据管理  
-    > * 各类UI组件库  
-    > * 企业级解决方案  
+* 一些特别的plugin和loader  
+    **plugins**
+    > * `webpack.DefinePlugin`  
+    > * `webpack.HashedNoduleIdsPlugin`  
+    > * `webpack.NoEmitOnErrorsPlugin`  
+    > * `webpack.ProvidePlugin`  
+    > * `copy-webpack-plugin`  
+    > * `mini-css-extract-plugin`  
 
-    **UI组件库**
-    > * ant-d  
-    > * element  
-    > * material  
+* 环境区分
+    **版本差异————项目有哪些**
+    > * 开发  
+    > * 测试  
+    > * 预发  
+    > * 线上  
 
-* 代码规范  
-    **standard.js规范**
-    > * `npm install standard --save-dev`  
-    > * `npm install snazzy --save-dev`  
-    > * 配置package.json,添加一条名为lint的`npm script "scripts"`: `{ "lint": "standard --varbose | snazzy" }`  
-    > * 使用编辑器插件，实时检查代码规范  
-    > * `git pre-commit`钩子，在每次commit之前检查代码规范  
+    **版本差异————配置环境**
+    > * 开发  
+    > * 测试  
+    > * 线上  
 
-    **bem css规范**
-    > * `.person{}`  
-    > * `.person__hand{}`  
-    > * `.person--female{}`  
-    > * `.person--female__hand{}`  
-    > * `.person__hand--left{}`  
+* 项目问题解决  
+    **不要把配置当配置**
+    > * 当成一个程序  
+
+    **解决方案归纳**
+    > * 如果是要对模块内容进行处理： loader是第一解决方案  
+    > * 如果要增加一些特殊的功能：可以自定义添加插件  
+    > * 项目上的打包简化，可变性配置等：通过编写相应的操作函数  
 
 **3 问题库**
