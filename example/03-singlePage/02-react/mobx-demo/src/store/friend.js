@@ -17,11 +17,11 @@ class Friend {
     }
   ]
 
-  @observable id = 0
+  @observable id = 1
 
   @computed
   get friendPost() {
-    return post.filter(item => item.friendId = this.id)
+    return post.list.filter(item => item.friendId === this.id)
   }
 }
 

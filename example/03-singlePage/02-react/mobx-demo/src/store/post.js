@@ -12,13 +12,13 @@ class Post {
       title: 'hello xiao b',
       content: 'hello xiao b post 2',
       id: 2,
-      friendId: 1
+      friendId: 2
     },
     {
       title: 'hello xiao c',
       content: 'hello xiao c post 3',
       id: 3,
-      friendId: 1
+      friendId: 3
     }
   ]
 }
