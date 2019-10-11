@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,viewport-fit=cover">
+    <style>
+        html,body{
+            width: 100%;
+            height: 100%;
+        }
+        #root{
+            width: 100vw;
+            height: 100vh;
+        }
+        html,body,#root,div,h1,h2,h3,h4,h5,h6,p{
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+    <script>
+			!function (e, a) {
+				var o = e.documentElement, t = "orientationchange" in a ? "orientationchange" : "resize";
+
+				function n(e) {
+					var t = o.clientWidth;
+					640 < t && (t = 640);
+					o.clientHeight;
+					var n = t / 10;
+					o.style.fontSize = n + "px";
+					console.log(n)
+					var i = parseFloat(a.getComputedStyle(o).fontSize) || n;
+					.01 < Math.abs(n - i) && (o.style.fontSize = n * (n / i) + "px")
+				}
+
+				e.addEventListener && (a.addEventListener(t, n, !1), e.addEventListener("DOMContentLoaded", n, !1))
+			}(document, window)
+    </script>
+</head>
+
+<body>
+<div id="root"></div>
+</body>
+</html>
