@@ -20,6 +20,8 @@ import './App.css';
 // import Loading from './02/Loading/';
 // import Hooks from './02/Hooks/';
 // import Home from './Redux/home/index';
+// import MobxDemo from './02/mobx/index'
+// import MobxDemo2 from './02/mobx/index2'
 
 // let dataSource = [
 //   {name: 'ryan', age: 30, sex: 'man'},
@@ -116,6 +118,7 @@ class A extends React.Component {
             Learn React
           </a> */}
         </header>
+        {/* <MobxDemo2 /> */}
         <Layout />
       </div>
     )
