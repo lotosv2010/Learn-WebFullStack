@@ -5,8 +5,8 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 // import { Provider} from 'react-redux';
 // import {store} from './Redux/store/index'
-import { Provider } from 'mobx-react';
-import store from './store/index'
+// import { Provider } from 'mobx-react';
+// import store from './store/index'
 
 // 由于 antd 组件的默认文案是英文，所以需要修改为中文
 // import zhCN from 'antd/es/locale/zh_CN';
