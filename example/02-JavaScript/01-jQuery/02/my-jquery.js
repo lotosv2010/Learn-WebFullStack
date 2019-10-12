@@ -146,7 +146,7 @@
 			}
 			//过滤掉<a>   <a>   => a 
 			var parse = rejectExp.exec(data);
-			console.log(parse)
+			// console.log(parse)
 			return [context.createElement(parse[1])];   
 		}
   })
