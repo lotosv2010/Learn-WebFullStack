@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script src="./my-jquery.js"></script>
+  <script>
+    // console.log($())
+
+    /*
+    // 任意对象扩展
+    var obj = $.extend({}, {name: 'max'})
+
+    // jQuery本身扩展,this=>jquery
+    $.extend({
+      work: function() {}
+    })
+    $.work(); 
+
+    // jQuery实例对象扩展,this=>实例对象
+    $.fn.extend({
+      sex: '男'
+    })
+    $().sex;
+    */
+
+    // 浅拷贝
+    var ret = {name: 'max', list: {age: 30}}
+    var res = {list: {sex: '女'}}
+    // var obj = $.extend({}, ret, res)
+    // console.log(obj)
+
+    // 深拷贝
+    var obj2 = $.extend(true, {}, ret, res)
+    console.log(obj2)
+  </script>
+</body>
+</html>
