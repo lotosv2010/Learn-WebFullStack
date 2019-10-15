@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="box"></div>
+  <div id="box2"></div>
+  <script src="./my-jquery.js"></script>
+  <script>
+    var wait = function() {
+      var der = $.Deferred()  // 延迟对象  deferred
+      var test = function() {
+        console.log('老司机开车了')
+        der.resolve('max') // 成功  队列中的处理函数，调用成功这个队列中的的处理函数
+      }
+      setTimeout(test, 2000);
+      return der
+    }
+
+    // 延迟对象的状态，决定调用那个队列中的处理函数
+    $.when(wait())  // promise对象,有state|then|pormise|done|fail|progress方法
+      .done(function(name) {  // promise.done() => self.add()
+        console.log(name)
+        console.log('执行成功')
+      })
+      .fail(function() {
+        console.log('执行失败')
+      })
+  </script>
+</body>
+</html>
