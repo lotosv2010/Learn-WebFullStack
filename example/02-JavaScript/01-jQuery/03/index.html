@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="box"></div>
+  <div id="box2"></div>
+  <script src="./my-jquery.js"></script>
+  <script>
+    var cb = _.callbacks('memory')
+    cb.add(function() {
+      console.log('add1')
+    })
+    cb.add(function() {
+      console.log('add3')
+    })
+    cb.fire()
+    cb.add(function() {
+      console.log('add2')
+    })
+  </script>
+</body>
+</html>
