@@ -10,6 +10,10 @@
 >>>> [**02 选择器**](https://github.com/lotosv2010/Learn-WebFullStack/blob/master/docs/Markdown/02-JavaScript/01-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20jQuery%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/02-%E9%80%89%E6%8B%A9%E5%99%A8.md)  
 >>>> [**03 Callbacks入门&原理分析**](https://github.com/lotosv2010/Learn-WebFullStack/blob/master/docs/Markdown/02-JavaScript/01-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20jQuery%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/03-Callbacks%E5%85%A5%E9%97%A8%26%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90.md)  
 >>>> [**04 延时对象-Deferred概念 & 源码剖析**](https://github.com/lotosv2010/Learn-WebFullStack/blob/master/docs/Markdown/02-JavaScript/01-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20jQuery%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/04-%E5%BB%B6%E6%97%B6%E5%AF%B9%E8%B1%A1-Deferred%E6%A6%82%E5%BF%B5%20%26%20%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90.md)  
+>>>> [**05 事件绑定**](https://github.com/lotosv2010/Learn-WebFullStack/blob/master/docs/Markdown/02-JavaScript/01-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20jQuery%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/05-%E4%BA%8B%E4%BB%B6%E7%BB%91%E5%AE%9A.md)  
+>>>> [**06 DOM操作核心与方法**](https://github.com/lotosv2010/Learn-WebFullStack/blob/master/docs/Markdown/02-JavaScript/01-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20jQuery%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/06-DOM%E6%93%8D%E4%BD%9C%E6%A0%B8%E5%BF%83%E4%B8%8E%E6%96%B9%E6%B3%95.md)  
+>>>> [**07 动画队列 - 动画设计 - 动画实现**](https://github.com/lotosv2010/Learn-WebFullStack/blob/master/docs/Markdown/02-JavaScript/01-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20jQuery%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/07-%E5%8A%A8%E7%94%BB%E9%98%9F%E5%88%97%20-%20%E5%8A%A8%E7%94%BB%E8%AE%BE%E8%AE%A1%20-%20%E5%8A%A8%E7%94%BB%E5%AE%9E%E7%8E%B0%20-%20%E5%89%AF%E6%9C%AC.md)  
+>>>> [**08 其他**](https://github.com/lotosv2010/Learn-WebFullStack/blob/master/docs/Markdown/02-JavaScript/01-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20jQuery%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/08-%E5%85%B6%E4%BB%96.md)  
 
 >>> **02 函数式编程及Underscore源码分析**
 
