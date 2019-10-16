@@ -7,30 +7,29 @@
   <title>Document</title>
 </head>
 <body>
-  <ul id="proxy">
-    <li>11111</li>
-    <li>22222</li>
-    <li>33333</li>
-    <li>44444</li>
-    <li>55555</li>
-  </ul>
+  <div id="box">111</div>
+  <div id="box2">222</div>
+  <div id="box3"><input id="input" /></div>
   <script src="./my-jquery.js"></script>
   <script>
-    // var elemUl = document.getElementById('proxy')
-    // var elemLi = elemUl.getElementsByTagName('li')
-    // for (var i = 0; i < elemLi.length; i++) {
-    //   elemLi[i].onclick = function() {
-    //     console.log('loading...')
-    //   }
-    // }
+    $('#box').on('click', function() {
+      console.log('loading...')
+    })
 
-    var proxy = document.getElementById('proxy')
-    proxy.onclick = function(event) {
-      var target = event.target;
-      if (target.nodeName.toLowerCase() == 'li') {
-        console.log('loading...')
-      }
-    }
+    $('#box2').on('createEvent', function(event, name) {
+      console.log('loading div2 ...', name)
+    })
+
+    $('body').on('createEvent', function(event, name) {
+      console.log('loading body ...')
+    })
+
+    $('#box2').trigger('createEvent', 'max')
+
+    $('#input').on('focus', function() {
+      console.log('loading input...')
+    })
+    $('#input').trigger('focus')
   </script>
 </body>
 </html>
