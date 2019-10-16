@@ -1,11 +1,14 @@
 
 **1 目标**
-* 理解模块短名称配置解决方案
+* html-text-css作用  
 
 **2 笔记**
-* 理解模块短名称配置解决方案  
-  **alias**
-  > * 当模块标识很长时，可以使用`alias`配置来简化。
+* html-text-css作用  
+  **html-text-css作用**
+  > * html(): 用为读取和修改元素的HTML标签  
+  > * text(): 用来读取或修改元素的纯文本内容  
+  > * css(): 设置或返回被选元素的一个或多个样式属性  
+  > * 说明: text(),html().css()都是通过jQuery.access提供底层支持。jQuery.access()是一个多功能方法，作为set和get值来使用  
 
   > * 配置：
     ```javascript
