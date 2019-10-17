@@ -9,6 +9,16 @@
 	var rejectExp = /^<(\w+)\s*\/?>(?:<\/\1>|)$/;
 	var core_version = "1.0.1";
 	var optionsCache = {};
+	var rxhtmlTag = /<(?!area|br|col|embed|hr|img|input|link|meta|param)(([\w:]+)[^>]*)\/>/gi;
+	//关闭这些标签以支持XHTML
+	var wrapMap = {
+		option: [1, "<select multiple='multiple'>", "</select>"],
+		thead: [1, "<table>", "</table>"],
+		col: [2, "<table><colgroup>", "</colgroup></table>"],
+		tr: [2, "<table><tbody>", "</tbody></table>"],
+		td: [3, "<table><tbody><tr>", "</tr></tbody></table>"],
+		_default: [0, "", ""]
+	};
 
 	function returnTrue() {
 		return true;
@@ -23,6 +33,15 @@
 		try {
 			return document.activeElement;
 		} catch (err) {}
+	}
+
+	function getAll(context, tag) {
+		var ret = context.getElementsByTagName ? context.getElementsByTagName(tag || "*") :
+			context.querySelectorAll ? context.querySelectorAll(tag || "*") : [];
+		// console.log(ret);   //查找script元素
+		return tag === undefined || tag && jQuery.nodeName(context, tag) ?
+			jQuery.merge([context], ret) :
+			ret;
 	}
 
 	var jQuery = function(selector, context) {
@@ -43,12 +62,12 @@
 
 			if (typeof selector === "string") {
 				if (selector.charAt(0) === "<" && selector.charAt(selector.length - 1) === ">" && selector.length >= 3) {
-					match = [selector]
+					match = [selector] //[<div><p>max</p></div>]
 				}
 				//创建DOM
 				if (match) {
-					//this  
-					jQuery.merge(this, jQuery.parseHTML(selector, context));
+					//this   "<div><p>max</p></div>"
+					jQuery.merge(this, jQuery.parseHTML(selector, context, true));
 					//查询DOM节点
 				} else {
 					elem = document.querySelectorAll(selector);
@@ -66,9 +85,6 @@
 				return this;
 			}
 
-		},
-		css: function() {
-			console.log("di~~didi~~")
 		},
 		//....
 	}
@@ -132,7 +148,7 @@
 		now: Date.now, //返回当前时间距离时间零点(1970年1月1日 00:00:00 UTC)的毫秒数
 		//类型检测     
 		isPlainObject: function(obj) {
-			return typeof obj === "object";
+			return toString.call(obj) === "[object Object]";
 		},
 
 		isArray: function(obj) {
@@ -172,15 +188,101 @@
 			return first;
 		},
 
-		parseHTML: function(data, context) {
+		//init 传值 true    string
+		parseHTML: function(data, context, keepScripts) {
 			if (!data || typeof data !== "string") {
 				return null;
 			}
-			//过滤掉<a>   <a>   => a 
+			//参数兼容处理
+			if (typeof context === "boolean") {
+				keepScripts = context;
+				context = false;
+			}
+			context = context || document;
+			//过滤掉<a>   <a>   => a   问题：
 			var parse = rejectExp.exec(data);
-			console.log(parse)
-			return [context.createElement(parse[1])];
+			var scripts = !keepScripts && []; //默认空数组   false
+			//创建元素
+			if (parse) {
+				return [context.createElement(parse[1])];
+			}
+
+			//[data]
+			// console.log(data) //[<div><p>max</p></div>]
+			parsed = jQuery.buildFragment([data], context, scripts);
+
+			return jQuery.merge([], parsed.childNodes);
 		},
+
+		buildFragment: function(elems, context, scripts, selection) {
+			var elem, tmp, tag, wrap, contains, j,
+				i = 0,
+				l = elems.length,
+				fragment = context.createDocumentFragment(), //文档碎片  容器
+				nodes = [];
+
+			for (; i < l; i++) {
+				elem = elems[i]; //<div><p>max</p></div>
+
+				if (elem || elem === 0) {
+					// 是对象直接添加节点
+					if (jQuery.isPlainObject(elem) === "object" && elem !== null) {
+						// Support: QtWebKit
+						// jQuery.merge because core_push.apply(_, arraylike) throws
+						jQuery.merge(nodes, elem.nodeType ? [elem] : elem);
+
+						///<|&#?\w+;/  <div>xxx</div>
+					} else if (!/<|&#?\w+;/.test(elem)) {
+						nodes.push(context.createTextNode(elem));
+					} else {
+						//容器    子节点  div
+						tmp = tmp || fragment.appendChild(context.createElement("div"));
+						// 获取传递过来字符串中的标签名
+						//console.log(/<([\w:]+)/.exec(elem))
+						tag = (/<([\w:]+)/.exec(elem) || ["", ""])[1].toLowerCase();
+						//_default: [0, "", ""]  
+						wrap = wrapMap[tag] || wrapMap._default;
+						tmp.innerHTML = wrap[1] + elem.replace(rxhtmlTag, "<$1></$2>") + wrap[2];
+						// console.log(elem.replace(rxhtmlTag, "<$1></$2>"));
+
+						// console.log(tmp.childNodes)
+						//创建的文档碎片div 存储在nodes中  nodes  []
+						jQuery.merge(nodes, tmp.childNodes);
+						tmp = fragment.firstChild;
+						tmp.textContent = "";
+					}
+				}
+			}
+
+			// Remove wrapper from fragment
+			fragment.textContent = "";
+
+			i = 0;
+			while ((elem = nodes[i++])) {
+				// #4087 - If origin and destination elements are the same, and this is
+				// that element, do not do anything   
+				if (selection && jQuery.inArray(elem, selection) !== -1) {
+					continue;
+				}
+
+				tmp = getAll(fragment.appendChild(elem), "script");
+				if (scripts) {
+					j = 0;
+					while ((elem = tmp[j++])) {
+						if (rscriptType.test(elem.type || "")) {
+							scripts.push(elem);
+						}
+					}
+				}
+			}
+
+			return fragment;
+		},
+
+		nodeName: function(elem, name) {
+			return elem.nodeName && elem.nodeName.toLowerCase() === name.toLowerCase();
+		},
+
 
 		//$.Callbacks用于管理函数队列
 		callbacks: function(options) {
@@ -316,59 +418,72 @@
 			}
 		},
 
-		/**
-		 * elems: 对象
-		 * fn: 回调函数
-		 * key: 属性
-		 * value: 值
-		 */
+
+		//boss
+		//对象  回调函数   属性   value值    text 返回值是什么？  access =>  fn.call(elmes[0])  回调函数
 		access: function(elems, fn, key, value) {
-			var length = elems.length
-			var testting = key === null // text
-			var cache, chainable, name // 是否要来链接式的调用
-
-			// key
-			if(typeof key == 'object' && key !== null) {
-				chainable = true
+			var length = elems.length;
+			var testing = key === null; //text   key "color"  false
+			var cache, chainable, name; //是否要来链接式的调用
+			//key  
+			if (jQuery.isPlainObject(key) && key !== null) {
 				for (name in key) {
-					if (key.hasOwnProperty(name)) {
-						return jQuery.access(elems, fn, name, key[name])
-					}
+					// console.log(name)
+					jQuery.access(elems, fn, name, key[name]); //color "red"
 				}
 			}
 
-			if(value !== undefined) {
-				chainable = true
-				if(testting) {
-					cache = fn // 回调缓存
-					fn = function(key, value) {  // 重置回调
-						cache.call(this, value)
+			if (value !== undefined) { //value === undefined    get 
+				chainable = true;
+				if (testing) {
+					cache = fn; //回调缓存
+					fn = function(key, value) { //重置回调函数
+						cache.call(this, value);
 					}
 				}
-
-				for (let i = 0; i < length; i++) { // 小技巧
-					fn.call(elems[i], key, value)
+				for (var i = 0; i < length; i++) {
+					fn.call(elems[i], key, value); //fn  回调函数   key  value
 				}
 			}
-			// text() 的返回值是什么？ access() => fn.call(elems[0]) ，最终回调函数的返回值
-			return chainable ? elems : fn.call(elems[0]) 
+
+			return chainable ? elems : (testing ? fn.call(elems[0]) : fn.call(elems[0], key, value));
 		},
-
 		empty: function(elem, value) {
-			var nodeType = elem.nodeType
-			// 1-元素  9-文档  11-文档碎片
-			if(nodeType === 1 || nodeType === 9 || nodeType === 11) {
-				elem.textContent = value
+			var nodeType = elem.nodeType; // 1
+			//1 元素      9 文档   11 文档碎片
+			if (nodeType === 1 || nodeType === 9 || nodeType === 11) {
+				elem.textContent = value; //"max"
 			}
 		},
+
 		text: function(elem) {
-			var nodeType = elem.nodeType
-			if(nodeType === 1 || nodeType === 9 || nodeType === 11) {
-				return elem.textContent
+			var nodeType = elem.nodeType;
+			if (nodeType === 1 || nodeType === 9 || nodeType === 11) {
+				return elem.textContent;
 			}
+		},
+		style: function(elem, name, value) {
+			//name  名称是否规范  font-size    => fontSize
+			var origName = jQuery.camelCase(name);
+			//console.log(name)
+			if (value !== undefined) {
+				elem.style[origName] = value;
+			}
+		},
+		camelCase: function(string) {
+			return string.replace(/^-ms-/, "ms-").replace(/-([a-z])/gi, function(context, first) {
+				return first.toUpperCase();
+			});
+		},
+
+		//jquery.css(元素,属性);
+		css: function(elem, name, styles) {
+			styles = styles || getStyles(elem);
+			return styles.getPropertyValue(name);
 		}
 
 	});
+
 
 	function Data() {
 		//jQuery.expando是jQuery的静态属性,对于jQuery的每次加载运行期间时唯一的随机数
@@ -470,13 +585,13 @@
 			var handlers = (data_priv.get(this, "events") || {})[event.type] || [];
 			event.delegateTarget = this;
 			var args = [].slice.call(arguments);
-			
+
 			//执行事件处理函数
-			jQuery.event.handlers.call(this,handlers, args);
+			jQuery.event.handlers.call(this, handlers, args);
 		},
 
 		//执行事件处理函数
-		handlers: function(handlers, args) {   //[event , 自定义参数]
+		handlers: function(handlers, args) { //[event , 自定义参数]
 			handlers[0].handler.apply(this, args);
 		},
 
@@ -597,7 +712,7 @@
 			//如之前所看到：data可选,传递到事件处理程序的额外参数。注意:事件处理程序第一个参数默认是event(此为出处)
 			data = data == null ? [event] :
 				jQuery.markArray(data, [event]);
-             
+
 			//事件类型是否需要进行特殊化处理   focus
 			special = jQuery.event.special[type] || {};
 			//如果事件类型已经有trigger方法，就调用它
@@ -622,14 +737,14 @@
 				//先判断在缓存系统中是否有此元素绑定的此事件类型的回调方法，如果有，就取出来	
 				handle = (data_priv.get(cur, "events") || {})[event.type] && data_priv.get(cur, "handle");
 				if (handle) {
-					console.log(handle)
-                    handle.apply(cur, data);
+					// console.log(handle)
+					handle.apply(cur, data);
 				}
 			}
 		},
 	}
 
-    //模拟Event对象
+	//模拟Event对象
 	jQuery.Event = function(src, props) {
 		//创建一个jQuery.Event实例对象
 		if (!(this instanceof jQuery.Event)) {
@@ -649,7 +764,7 @@
 		isImmediatePropagationStopped: returnFalse,
 		//取消事件的默认动作
 		preventDefault: function() {
-			var e = this.originalEvent;
+			var e = this.originalEvent; //指向原始的事件对象
 
 			this.isDefaultPrevented = returnTrue;
 
@@ -667,6 +782,7 @@
 				e.stopPropagation();
 			}
 		},
+		//阻止当前事件向祖辈元素的冒泡传递
 		stopImmediatePropagation: function() {
 			this.isImmediatePropagationStopped = returnTrue;
 			this.stopPropagation();
@@ -697,16 +813,64 @@
 			});
 		},
 		text: function(value) {
-			return jQuery.access(this,function(value) {
-				return value === undefined ? jQuery.text(this) : jQuery.empty(this, value)
-			}, null, value)
+			return jQuery.access(this, function(value) {
+				//console.log(this)
+				//get  set   value === "max"
+				return value === undefined ? jQuery.text(this) : jQuery.empty(this, value);
+			}, null, value);
 		},
+		//css(["color"])
 		css: function(key, value) {
-			return jQuery.access(this,function(value) {
-				// return value === undefined ? jQuery.text(this) : jQuery.empty(this, value)
-			}, key, value)
-		}
+			return jQuery.access(this, function(key, value) {
+				var map = {};
+				var styles, len = key.length;
+				var i = 0;
+				//console.log(key)
+				if (jQuery.isArray(key)) { //返回的是一个对象
+					styles = getStyles(this); //对象   列表
+					for (; i < len; i++) {
+						map[key[i]] = jQuery.css(this, key[i], styles);
+					}
+
+					return map;
+				}
+				// console.log(key + "值" + value);
+				//字符串
+				return value !== undefined ? jQuery.style(this, key, value) : jQuery.css(this, key);
+			}, key, value); //null
+		},
+
+		addClass: function(value) { 
+			var len = this.length;
+			var clazz, cur, elem, i = 0;
+			var proceed = arguments.length === 0 || typeof value === "string" && value;
+			//console.log(proceed)
+			if (proceed) {
+				classes = value.match(/\S+/g) || [];
+				for (; i < len; i++) {
+					elem = this[i]; //
+					cur = elem.nodeType === 1 && (elem.className ? (" " + elem.className + " ").replace(/\t\r\n\f/g, "") : " ");
+					//此处感谢周鑫的指正 if(){} 语句的必须放在for循环中,否则无法批量添加className.
+					if (cur) {
+						var j = 0;
+						while (clazz = classes[j++]) {
+							if (cur.indexOf(" " + clazz + " ") < 0) {
+								cur += clazz + " ";
+							}
+						}
+						elem.className = cur.trim();
+					}
+					
+				}
+			}
+			return this;
+		},
+
 	})
+
+	function getStyles(elem) {
+		return window.getComputedStyle(elem, null); //对象
+	}
 
 	function createOptions(options) {
 		var object = optionsCache[options] = {};

@@ -5,17 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
+  <style>
+   div {
+     color: red;
+     height: 200px;
+   }
+  </style>
 </head>
 <body>
   <div id="box">111</div>
   <script src="./my-jquery.js"></script>
   <script>
-    console.log($('#box').text())
+    // console.log($('#box').text())
     console.log($('#box').text('max'))
 
     console.log($('#box').css({
-      'color': 'red'
+      'color': 'blue'
     }))
+
+    console.log($('#box').css('color'))
   </script>
 </body>
 </html>
