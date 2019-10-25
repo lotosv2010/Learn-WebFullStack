@@ -1,8 +1,6 @@
 
 **1 目标**
 * 什么是VuePress
-* webpack主要功能
-* webpack的基础使用
 
 **2 笔记**
 * 什么是VuePress  
