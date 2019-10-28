@@ -4,7 +4,7 @@
 set -e
 
 # 构建
-cnpm run build:build
+cnpm run build
 
 # 进入生成的构建文件夹
 cd blog/.vuepress/dist
