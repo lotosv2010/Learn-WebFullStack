@@ -19,7 +19,7 @@ module.exports = {
         text: 'Contact',
         icon: 'reco-message',
         items: [
-          { text: 'GitHub', link: 'https://github.com/lotosv2010', icon: 'reco-github' },
+          { text: 'GitHub', link: 'https://github.com/lotosv2010/blog', icon: 'reco-github' },
           // { text: '简书', link: 'https://www.jianshu.com/u/cd674a19515e', icon: 'reco-jianshu' },
           // { text: 'CSDN', link: 'https://blog.csdn.net/recoluan', icon: 'reco-csdn' },
           // { text: '博客圆', link: 'https://www.cnblogs.com/luanhewei/', icon: 'reco-bokeyuan' },
