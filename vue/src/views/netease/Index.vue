@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <el-container>
+  <div style="padding: 20px !important;">
+    <!-- <el-container>
       <el-header>Header</el-header>
       <el-container>
         <el-aside width="200px">Aside</el-aside>
@@ -14,7 +14,14 @@
           <el-footer>Footer</el-footer>
         </el-container>
       </el-container>
-    </el-container>
+    </el-container> -->
+    <g-alert
+      title="这是一个title"
+      type="success"
+      description="这是一段描述"
+      center
+      :show-icon="true"
+    />
   </div>
 </template>
 

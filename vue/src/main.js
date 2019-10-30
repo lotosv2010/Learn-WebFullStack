@@ -5,6 +5,9 @@ import store from './store';
 import './registerServiceWorker';
 import './plugins/custom/'
 import './plugins/element.js'
+import GUI from '../packages/index'
+import '../packages/theme/src/index.scss'
+Vue.use(GUI)
 
 import gc from 'gw-clipboard'
 Vue.use(gc)

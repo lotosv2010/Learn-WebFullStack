@@ -4,5 +4,5 @@ export default {
   component: () => import('@/views/netease/Index.vue'),
   meta: {
     requireAuth: true
-   }
+  }
 }
