@@ -49,6 +49,51 @@
     }
   }
 
+  @include m(info) {
+    &.is-light {
+      background-color: $--alert-info-color;
+      color: $--color-info;
+      .el-alert__description {
+        color: $--color-info;
+      }
+    }
+
+    &.is-dark {
+      background-color: $--color-info;
+      color: $--color-white;
+    }
+  }
+
+  @include m(warning) {
+    &.is-light {
+      background-color: $--alert-warning-color;
+      color: $--color-warning;
+      .el-alert__description {
+        color: $--color-warning;
+      }
+    }
+
+    &.is-dark {
+      background-color: $--color-warning;
+      color: $--color-white;
+    }
+  }
+
+  @include m(error) {
+    &.is-light {
+      background-color: $--alert-danger-color;
+      color: $--color-danger;
+      .el-alert__description {
+        color: $--color-danger;
+      }
+    }
+
+    &.is-dark {
+      background-color: $--color-danger;
+      color: $--color-white;
+    }
+  }
+
   @include e(content) {
     display: table-cell;
     padding: 0 8px;

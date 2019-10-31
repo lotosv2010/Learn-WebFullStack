@@ -77,10 +77,10 @@ export default {
       return TYPE_CLASSES_MAP[this.type] || 'el-icon-info'
     },
     isBigIcon() {
-      return this.description || this.$solts.default ? 'is-big' : ''
+      return this.description || this.$slots.default ? 'is-big' : ''
     },
     isBoldTitle() {
-      return this.description || this.$solts.default ? 'is-bold' : ''
+      return this.description || this.$slots.default ? 'is-bold' : ''
     }
   },
   methods: {

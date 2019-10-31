@@ -16,11 +16,32 @@
       </el-container>
     </el-container> -->
     <g-alert
-      title="这是一个title"
-      type="success"
-      description="这是一段描述"
-      center
+      title="成功提示的文案"
+      type="info"
+      description="辅助性文字1"
       :show-icon="true"
+      effect="dark"
+    />
+    <g-alert
+      title="成功提示的文案"
+      type="success"
+      description="辅助性文字1"
+      :show-icon="true"
+      effect="dark"
+    />
+    <g-alert
+      title="成功提示的文案"
+      type="error"
+      description="辅助性文字1"
+      :show-icon="true"
+      effect="dark"
+    />
+    <g-alert
+      title="成功提示的文案"
+      type="warning"
+      description="辅助性文字1"
+      :show-icon="true"
+      effect="dark"
     />
   </div>
 </template>
@@ -76,5 +97,8 @@ export default {
   .div-demo {
     @include fontColor;
   }
+}
+.el-alert {
+  margin-bottom: 20px;
 }
 </style>
