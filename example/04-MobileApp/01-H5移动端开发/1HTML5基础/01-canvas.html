@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Canvas</title>
+  <script type="text/javascript">
+    function draw() {
+      var canvas = document.getElementById('test')
+      if(canvas.getContext) {
+        // 矩形
+        var ctx = canvas.getContext('2d')
+        // ctx.fillRect(25,25,100,100) // 实心矩形
+        // ctx.clearRect(45,45,60,60) // 清除矩形区域
+        // ctx.strokeRect(50,50,50,50) // 空心矩形
+
+        // 圆弧
+        // ctx.arc(175,175,50,0,2*Math.PI,true)
+        // ctx.stroke()
+
+        // 路径
+        // ctx.clearRect(0,0,650,650)
+        // ctx.beginPath() // 开始路径
+        // ctx.moveTo(75,50) // 画笔移动到点75,50
+        // ctx.lineTo(100,75) // 从上一个点往100,75绘制直线
+        // ctx.lineTo(45,125) // 再从上一个点往45,125绘制直线
+        // ctx.stroke()
+
+        // ctx.fillStyle = '#FD0'
+        // ctx.fillRect(0,0,75,57)
+
+        /* 绘制一个圆形的轮廓*/
+        // ctx.strokeStyle = 'rgb(0, 255, 255)'
+        // ctx.beginPath()
+        // ctx.arc(50, 50,10,0,Math.PI*2,true)
+        // ctx.stroke()
+
+        /* 设置填充色，按照设置的颜色绘制一个实心矩形*/
+        // ctx.fillStyle = 'rgb(0, 255, 255)'
+        // ctx.globalAlpha = 0.2 // 设置透明度
+        // ctx.fillRect(0,0,75,75)
+
+        // 渐变
+        // var linearGradient = ctx.createLinearGradient(0,0,150,150)
+        // var radialgradient = ctx.createRadialGradient(75,75,0,75,75,100)
+        // linearGradient.addColorStop(0, 'white')
+        // linearGradient.addColorStop(1, 'black')
+        // ctx.fillStyle = linearGradient
+        // ctx.fillRect(25,25,100,100)
+
+        // 圆
+        // radialgradient.addColorStop(0, 'white')
+        // radialgradient.addColorStop(1, 'black')
+        // ctx.fillStyle = radialgradient
+        // ctx.arc(75,75,50,0,2*Math.PI,true)
+        // ctx.fill()
+
+        // 二次贝塞尔曲线
+        // ctx.beginPath()
+        // ctx.moveTo(0, 150) // 移动到开始点0,150
+        // ctx.quadraticCurveTo(75, 0, 150, 150) // 控制点75,0;结束点150,150
+        // ctx.stroke() // 绘制
+
+        // 三次贝塞尔曲线
+        // ctx.beginPath()
+        // ctx.moveTo(0, 100) // 移动到开始点0,100
+        // ctx.bezierCurveTo(50, 50, 100, 150, 150, 100) // 控制点一50,50;控制点二100,150；结束点150,100
+        // ctx.stroke() // 绘制
+
+        // Path2D
+        // var circle = new Path2D()
+        // circle.moveTo(125, 35)
+        // circle.arc(100, 35, 25, 0, 2 * Math.PI)
+        // ctx.fill(circle)
+
+        // SVG Paths
+        // var p = new Path2D('M10 10 h 80 v 80 h -80 Z')
+        // ctx.fill(p)
+
+        // 变形
+        ctx.lineWidth = '10'
+        ctx.strokeStyle = '#fe9901'
+        ctx.translate(canvas.width / 2, canvas.height / 2)
+        ctx.rotate(30/ 180 * Math.PI)
+        ctx.beginPath()
+        ctx.moveTo(0, -180)
+        ctx.lineTo(0, -200)
+        ctx.stroke()
+
+        ctx.rotate(30 / 180 * Math.PI)
+        ctx.beginPath()
+        ctx.moveTo(0, -140)
+        ctx.lineTo(0, -160)
+        ctx.stroke()
+        ctx.save()
+        ctx.rotate(30 / 180 * Math.PI)
+        ctx.beginPath()
+        ctx.moveTo(0, -180)
+        ctx.lineTo(0, -200)
+        ctx.stroke()
+
+        ctx.rotate(30 / 180 * Math.PI)
+        ctx.beginPath()
+        ctx.moveTo(0, -140)
+        ctx.lineTo(0, -160)
+        ctx.stroke()
+      }
+    }
+  </script>
+</head>
+<body onload="draw()">
+  <canvas id="test" width="650" height="650">
+    您的浏览器暂不支持canvas
+  </canvas>
+</body>
+</html>
