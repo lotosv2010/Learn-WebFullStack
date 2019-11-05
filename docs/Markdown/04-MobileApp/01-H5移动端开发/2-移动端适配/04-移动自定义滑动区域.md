@@ -1,0 +1,33 @@
+**1 目标**
+* 移动端事件
+![Vue内部运行机制](https://upload-images.jianshu.io/upload_images/7510511-c2ae527501cf39f7.png)
+
+**2 笔记**
+* 移动端事件  
+    **PC端事件在移动端兼容问题**
+    > * `click`事件延时200-300ms  
+    > * `dblclick`事件失效
+
+    **touch事件**
+    > * `touchstart`：当在屏幕上按下手指时触发  
+    > * `touchmove`：当在屏幕上移动手指时触发  
+    > * `touchend`：当在屏幕上抬起手指时触发  
+    > * `touchcancel`：当一些更高级的事件发生时(如电话接入或信息弹出)会取消当前的`touch`操作，即触发`touchcancel`。一般会在`touchcancel`时暂停游戏、存档等操作  
+
+    **触摸事件对象**
+    > * `TouchEvent`：描述手指在触摸平面(触摸屏、触摸板等)的状态变化的事件  
+    > * `TouchList`：代表一个触摸屏幕上所有触点的列表  
+    > * `touchend`：当在屏幕上抬起手指时触发  
+    > * `touchcancel`：当一些更高级的事件发生时(如电话接入或信息弹出)会取消当前的`touch`操作，即触发`touchcancel`。一般会在`touchcancel`时暂停游戏、存档等操作
+
+    **封装移动端tap事件**
+    > * 移动端使用`click`事件有延迟，用`touch`事件模拟移动端的点击事件  
+
+    **移动端点击穿透问题**
+    > * 阻止触发`touch`事件完成后的`click`事件  
+    > * 不能混用`touch`和`click`事件  
+
+**3 问题库**
+* `click`事件延迟  
+* `touch`和`click`事件  
+* 点击穿透注意事项  
