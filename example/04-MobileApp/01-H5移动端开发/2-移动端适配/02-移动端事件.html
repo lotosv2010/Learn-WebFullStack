@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>移动端事件</title>
+  <style>
+    .move {
+      height: 400px;
+      background-color: greenyellow;
+      color: aliceblue;
+    }
+  </style>
+</head>
+<body>
+  <div id="box">
+    <div><button id="touchStart">touchStart</button></div>
+  </div>
+  <div class="move">
+    <p id="p">move</p>
+  </div>
+  <input id="input" type="tel" placeholder="请输入电话号码">
+  <script>
+    /* 事件节流
+    ----------------------------------------------*/
+    let btn = document.querySelector('#touchStart')
+    btn.addEventListener('touchstart', function() {
+      console.log('touchStart')
+    })
+
+    let move = document.querySelector('.move')
+    let p = document.querySelector('#p')
+
+    let i = 0
+
+    function log() {
+      p.innerHTML = `move,${i++}`
+    }
+
+    // 封装一个节流函数
+    function seo(event, time) {
+      let timer = null // 节流阀
+      return function() {
+        if(!timer) {
+          timer = setTimeout(() =>{
+            event()
+            timer = null
+          }, time)
+        }
+      }
+    }
+
+    move.addEventListener('touchmove', seo(log, 1000))
+
+    /* 事件防抖
+    ----------------------------------------------*/
+    let input = document.querySelector('#input')
+
+    // 封装一个防抖函数
+    function antiShake(fn, wait) {
+      let timeOut = null
+      return args => {
+        if (timeOut) clearTimeout(timeOut)
+        timeOut = setTimeout(fn, wait)
+      }
+    }
+
+    function log2() {
+      console.log('antiShake')
+    }
+
+    input.addEventListener('input', antiShake(log2, 2000))
+  </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>移动端事件</title>
+  <script src="./lib/tap.js"></script>
+  <style>
+    .move {
+      height: 400px;
+      background-color: greenyellow;
+      color: aliceblue;
+    }
+  </style>
+</head>
+<body>
+  <div id="box">
+    <div><button id="btn">点我</button></div>
+    <div><button id="tap">点我tap</button></div>
+    <div><button id="longTap">点我longTap</button></div>
+    <div><button id="slideLeft">点我slideLeft</button></div>
+    <div><button id="slideRight">点我slideRight</button></div>
+    <div><button id="slideDown">点我slideDown</button></div>
+    <div><button id="slideUp">点我slideUp</button></div>
+  </div>
+  <script>
+    document.querySelector('#btn').addEventListener('click', function (e) {
+      console.log('电脑端点击', e)
+    })
+    $('#tap').tap(function(e) {
+      console.log('单击事件', e)
+    })
+    $('#longTap').longTap(function(e) {
+      console.log('长按事件', e)
+    })
+    $('#slideLeft').slideLeft(function(e) {
+      console.log('向左滑动', e)
+    })
+    $('#slideRight').slideRight(function(e) {
+      console.log('向右滑动', e)
+    })
+    $('#slideDown').slideDown(function(e) {
+      console.log('向下滑动', e)
+    })
+    $('#slideUp').slideUp(function(e) {
+      console.log('向上滑动', e)
+    })
+  </script>
+</body>
+</html>
