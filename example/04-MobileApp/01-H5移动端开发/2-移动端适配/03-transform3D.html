@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>transform2D</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+    .box {
+      width: 100px;
+      height: 100px;
+      text-align: center;
+      line-height: 100px;
+    }
+    .out {
+      /* 景深 */
+      perspective: 100px;
+      background-color: cadetblue;
+    }
+    .in {
+      transition: all 1s;
+      background-color: green;
+    }
+    .demo1 {
+      transform: translateZ(-100px);
+    }
+
+  </style>
+</head>
+<body>
+  <div class="box out"><div id="demo1" class="box in">旋转缩小</div></div>
+  <script>
+    let demo1 = document.querySelector('#demo1')
+    setTimeout(() => {
+      demo1.classList.add('demo1')
+    }, 1500)
+  </script>
+</body>
+</html>

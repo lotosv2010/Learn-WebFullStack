@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>transform2D</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+    .box {
+      width: 100px;
+      height: 100px;
+      text-align: center;
+      line-height: 100px;
+    }
+    .out {
+      background-color: cadetblue;
+    }
+    .in {
+      transition: all 1s;
+      background-color: green;
+    }
+    .rotate {
+      transform: rotate(90deg);
+    }
+    .skew {
+      transform: skew(30deg);
+    }
+    .scale {
+      transform: scale(0.5);
+    }
+    .translate {
+      transform: translate(50px, 50px);
+    }
+    .demo1 {
+      transform: rotate(360deg) scale(0.1);
+    }
+    .demo2 {
+      transform: translate(50px, 50px) scale(1.5);
+    }
+    .demo3 {
+      transform: scale(1.5) translate(50px, 50px);
+    }
+  </style>
+</head>
+<body>
+  <div class="box out"><div id="rotate" class="box in">旋转</div></div>
+  <div class="box out"><div id="skew" class="box in">斜切</div></div>
+  <div class="box out"><div id="scale" class="box in">缩放</div></div>
+  <div class="box out"><div id="translate" class="box in">平移</div></div>
+  <div class="box out"><div id="demo1" class="box in">旋转缩小</div></div>
+  <div class="box out"><div id="demo2" class="box in">平移->缩放</div></div>
+  <div class="box out"><div id="demo3" class="box in">缩放->平移</div></div>
+  <script>
+    let rotate = document.querySelector('#rotate')
+    let skew = document.querySelector('#skew')
+    let scale = document.querySelector('#scale')
+    let translate = document.querySelector('#translate')
+    let demo1 = document.querySelector('#demo1')
+    let demo2 = document.querySelector('#demo2')
+    let demo3 = document.querySelector('#demo3')
+    setTimeout(() => {
+      rotate.classList.add('rotate')
+      skew.classList.add('skew')
+      scale.classList.add('scale')
+      translate.classList.add('translate')
+      demo1.classList.add('demo1')
+      demo2.classList.add('demo2')
+      demo3.classList.add('demo3')
+    }, 1500)
+  </script>
+</body>
+</html>
