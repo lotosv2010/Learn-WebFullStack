@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>陀螺仪</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    body,html {
+      height: 100%;
+      width: 100%;
+      display: flex;
+    }
+    #app {
+      height: 200px;
+      width: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: auto;
+      position: relative;
+    }
+    #con {
+      width: 200px;
+      height: 300px;
+      font-size: 48px;
+      color: #000000;
+      display: flex;
+      position: absolute;
+      align-items: center;
+      justify-content: center;
+      background: chocolate;
+      margin: auto;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div id="con">
+      <p id="text">yao</p>
+    </div>
+  </div>
+  <script>
+    // 记住各轴的位置
+    var lastX = 0;
+    var lastY = 0;
+    var lastZ = 0;
+
+    // 事件触发点 阙值
+    var maxRange = 70;
+    // 手机停下来 阙值
+    var minRange = 20;
+    var isRange = false; // 节流阀
+
+    var text = document.querySelector('#text');
+
+
+    function getAdr() {
+      var type = navigator.userAgent;
+      // 当前机型
+      var isAndroid = type.indexOf('Android') > -1 || type.indexOf('Adr') > -1;
+      return isAndroid
+    }
+
+    // deviceOrientation：监听设备在方向上的变化的事件
+    // devicemotion：监听手机加速度变化的事件（比如：手机疯狂摇摆）
+    window.addEventListener('devicemotion', (e) => {
+      var motion = e.accelerationIncludingGravity;
+      console.log(motion)
+      var x = Math.round(motion.x);
+      var y = Math.round(motion.y);
+      var z = Math.round(motion.z);
+
+      var distance = Math.abs(x - lastX) + Math.abs(y - lastY) + Math.abs(z - lastZ);
+      // 拿手机
+      // 30以下 轻微晃动
+      // 100-150 剧烈晃动
+      // 60-90 用户有意识的摇动 
+      // con.innerHTML = distance;
+      if(distance > maxRange) {
+        text.innerHTML = '摇';
+        isRange = true;
+      }
+      if(isRange && distance < minRange) {
+        // 我已经摇过了
+        // 并且达到了项目设置的阙值
+        // 停下来
+        setTimeout(() => {
+          text.innerHTML = '触发事件'
+        }, 4000)
+      }
+      lastX = x;
+      lastY = y;
+      lastZ = z;
+    })
+  </script>
+</body>
+</html>

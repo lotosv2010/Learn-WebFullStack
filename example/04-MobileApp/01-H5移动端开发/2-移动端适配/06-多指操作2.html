@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>IOS多指操作</title>
+  <script src="./lib/android.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    body,html {
+      height: 100%;
+      width: 100%;
+      display: flex;
+    }
+    #app {
+      height: 200px;
+      width: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: auto;
+      position: relative;
+    }
+    #con {
+      width: 200px;
+      height: 300px;
+      font-size: 48px;
+      color: #000000;
+      display: flex;
+      position: absolute;
+      align-items: center;
+      justify-content: center;
+      background: chocolate;
+      margin: auto;
+    }
+  </style>
+</head>
+<body>
+    <div id="app">
+      <div id="con"></div>
+    </div>
+    <script>
+      // 清除默认事件，否则，浏览器会认为你在选取元素
+      document.addEventListener('touchstart', (e) => {
+        var e = e || window.event;
+        e.preventDefault();
+      })
+
+      window.onload = () => {
+        const con = document.querySelector('#con')
+        function start() {
+          console.log('start')
+        }
+
+        function change() {
+          console.log('change')
+        }
+
+        function end() {
+          console.log('end', {
+            start: start,
+            change: change,
+            end: end
+          })
+        }
+        
+        gesture(con, )
+      }
+    </script>
+</body>
+</html>

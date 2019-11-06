@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>陀螺仪</title>
+</head>
+<body>
+  <div>
+    <p id="p1"></p>
+    <p id="p2"></p>
+    <p id="p3"></p>
+  </div>
+  <script>
+    // 设备运动事件，重力感应
+    var p1 = document.querySelector('#p1');
+    var p2 = document.querySelector('#p2');
+    var p3 = document.querySelector('#p3');
+
+    function getAdr() {
+      var type = navigator.userAgent;
+      // 当前机型
+      var isAndroid = type.indexOf('Android') > -1 || type.indexOf('Adr') > -1;
+      console.log('isAndroid', isAndroid)
+      return isAndroid
+    }
+
+    window.addEventListener('devicemotion', (e) => {
+      console.log(e)
+      var motion = e.accelerationIncludingGravity;
+      var x = Math.round(motion.x);
+      var y = Math.round(motion.y);
+      var z = Math.round(motion.z);
+
+      // 保证IOS和Android都是整数
+      if(!getAdr()) {
+        x = -x;
+        y = -y;
+        z = -z;
+      }
+
+      // 安卓上10，IOS上-11
+      p1.innerHTML = `x: ${x}`
+      p2.innerHTML = `y: ${y}`
+      p3.innerHTML = `z: ${z}`
+    })
+  </script>
+</body>
+</html>
