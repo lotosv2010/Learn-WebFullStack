@@ -66,19 +66,32 @@
     }
 
     function init() {
-      let html = '', i = 0;
-      for (i = 0; i < 20; i++) {
+      let html = '';
+      for (let i = 0; i < 20; i++) {
         html += `<li>我是${i+1}</li>`;      
       }
       const len = list.children.length;
       if(len === 0) {
         list.innerHTML = html;
       } else {
-        list.appendChild(`<li>我是${i+1}</li>`)
+        const newHtml = parseDom(`<li>我是${len+1}</li>`);
+        insertAfter(newHtml, list.children[len-1])
       }
     }
 
     // 字符串dom化
+    function parseDom(arg) {
+      var objEle = document.createElement('div');
+      objEle.innerHTML = arg;
+      return [...objEle.childNodes];
+    }
+
+    // 在已有的元素后插入元素
+    function insertAfter(newEle, targetEle) {
+      newEle.forEach(element => {
+        targetEle.after(element)
+      })
+    }
 
     function scroll() {
       list.addEventListener('scroll', function() {
