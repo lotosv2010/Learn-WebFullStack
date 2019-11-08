@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>上滑下载</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    html,body {
+      height: calc(100vh-80px);
+      overflow: hidden;
+    }
+    header,footer {
+      width: 100%;
+      height: 40px;
+      position: absolute;
+      left: 0;
+      text-align: center;
+      line-height: 40px;
+      color: #999999;
+      z-index: 999;
+      background-color: aliceblue ;
+    }
+    header {
+      top: 0;
+    }
+    footer {
+      bottom: 0;
+    }
+    ul {
+      display: block;
+      width: 100%;
+      position: absolute;
+      top: 40px;
+      bottom: 40px;
+      overflow: auto;
+      list-style: none;
+    }
+    li {
+      text-indent: 20px;
+      border-bottom: 1px solid #aaaaaa;
+      height: 40px;
+      line-height: 40px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    我是header
+  </header>
+  <section>
+    <ul id="list">
+    </ul>
+  </section>
+  <footer>我是footer</footer>
+  <script>
+    const list = document.querySelector('#list');
+
+    window.onload = () => {
+      init()
+      scroll()
+    }
+
+    function init() {
+      let html = '', i = 0;
+      for (i = 0; i < 20; i++) {
+        html += `<li>我是${i+1}</li>`;      
+      }
+      const len = list.children.length;
+      if(len === 0) {
+        list.innerHTML = html;
+      } else {
+        list.appendChild(`<li>我是${i+1}</li>`)
+      }
+    }
+
+    // 字符串dom化
+
+    function scroll() {
+      list.addEventListener('scroll', function() {
+        // ul的高度，随着机型已经定死了
+        var listH = this.clientHeight;
+
+        // 所有li的高度
+        var contentH = this.childNodes.length * 41;
+
+        // ul的高度与li总高度之差
+        const diffVal = contentH - listH;
+        if(this.scrollTop + 50 >= diffVal) {
+          console.log('loading.....')
+          init()
+        }
+      })
+    }
+  </script>
+</body>
+</html>
