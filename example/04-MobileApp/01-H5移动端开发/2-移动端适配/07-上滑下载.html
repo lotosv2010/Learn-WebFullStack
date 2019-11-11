@@ -39,12 +39,31 @@
       bottom: 40px;
       overflow: auto;
       list-style: none;
+      transition: all 0.5;
     }
     li {
       text-indent: 20px;
       border-bottom: 1px solid #aaaaaa;
       height: 40px;
       line-height: 40px;
+    }
+    #loading, #more {
+      position: absolute;
+      width: 100%;
+      height: 40px;
+      left: 0;
+      line-height: 40px;
+      text-align: center;
+      color: white;
+      background-color: orange;
+      z-index: 1;
+      transition: all 0.5s;
+    }
+    #loading {
+      top: 0;
+    }
+    #more {
+      bottom: 0;
     }
   </style>
 </head>
@@ -53,12 +72,16 @@
     我是 header
   </header>
   <section>
+    <div id="loading">loading...</div>
     <ul id="list">
     </ul>
+    <div id="more">loading...</div>
   </section>
   <footer>我是footer</footer>
   <script>
     const list = document.querySelector('#list');
+    const loading = document.querySelector('#loading');
+    const more = document.querySelector('#more');
 
     window.onload = () => {
       init()
@@ -104,8 +127,21 @@
         // ul的高度与li总高度之差
         const diffVal = contentH - listH;
         if(this.scrollTop + 50 >= diffVal) {
-          console.log('loading.....')
-          init()
+          // console.log('loading.....')
+          more.style.bottom = '40px';
+          setTimeout(() => {
+            init()
+            more.style.bottom = '0px';
+          }, 1000)
+        }
+
+        if(this.scrollTop === 0) {
+          list.style.top = '80px';
+          loading.style.top = '40px';
+          setTimeout(() => {
+            list.style.top = '40px';
+            loading.style.top = '0px';
+          }, 1000)
         }
       })
     }
