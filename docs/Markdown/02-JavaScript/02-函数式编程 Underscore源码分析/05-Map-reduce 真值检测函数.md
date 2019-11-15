@@ -1,24 +1,37 @@
 
 **1 目标**
-* 理解解析依赖
+* `map-reduce`
 * 理解依赖管理
 
 **2 笔记**
-* 理解解析依赖  
-  **回顾**
-  > * 当前模块所依赖的模块，是一个由模块标识组成的数组，模块加载器会从`factory.toString()`中解析出该数组。  
-
-  **源码**
+* `map-reduce`  
+  **`map-reduce`**  
+    > * `JavaScript Array.prototype`提供的 `map` 和 `reduce` 函数不仅是存在于`JavaScript`的两个`API`，更是函数式编程语言重要的组成部分，是一种对列表的操作思路  
+    > * `map-reduce`由如下两个独立的部分组成：  
+    > * `map`（映射）：  
+    >> * 一个映射过程就是将各个元素，按照一定的规则，逐个映射为新的元素。这是一个一一对应的过程  
+    >> * 用数学公式描述就是（其中，函数ff就是这个规则）  
+    > * `reduce`（规约）：  
+    >> * 一个规约过程仍需要迭代指定列表的每个元素，然后仍然按照一定规则，合并这些元素到一个目标对象上。这是一个由多至一的过程，或者说一个逐步积累的过程  
+  **`underscore reduce`**  
+    > * `underscore`通过内部函数`createReducer`来创建`reduce`函数：  
+    >> * 区分`reduce`的方向`dir`，是从序列开端开始做规约过程，还是从序列末端开始做规约过程  
+    >> * 判断用户在使用`.reduce`或者`.reduceRight`时，是否传入了第三个参数，即是否传入了规约起点  
     ```javascript
-    var REQUIRE_RE = /\brequire\s*\(\s*(["'])(.+?)\1\s*\)/g`
+    // 源码
+    var createReduce = function(dir) {
+      var reducer = function(obj, iteratee, memo, initial) {
+        // ...
+      }
+      return function(obj, iteratee, memo, context) {
+        return reducer(obj, optimizeCb(iteratee, context, 4), memo, initial)
+      }
+    }
     ```
 
-  **分析：**
-  > * \b 匹配一个词的边界。一个词的边界就是一个词不被另一个"字"字符跟随的位置或者没有其他"字"字符的其前面的位置。
-  > * 注意：这组字符相当有限：它只包括大写和小写的罗马字母，十进制数字和下划线字符。
-  > * \1 反向引用，\1表示接下来应该匹配到第一个捕获组中的内容。
-
-* 依赖管理解决方案
-  ![依赖管理解决方案]()  
+* 真值检测函数  
+  **概述**  
+    > * 在`underscore`中，除了`_.each,_.map,_.reduce`等函数操作集合，还提供了`_.filter,_.reject,_.every,_.some`这几个基本逻辑判断的集合操作函数 
+    > * 无一例外的是，这些函数都依赖于用户提供的真值检测函数，用来判断当前迭代元素是否满足条件。`underscore`将其值检测函数参数命名为`predicate`
     
 **3 问题库**  
