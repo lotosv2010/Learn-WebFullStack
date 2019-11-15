@@ -9,10 +9,13 @@
 <body>
   <script src="./index.js"></script>
   <script>
-    console.log(_([1, 2, 3, 4, 5, 4, 5, 6]).chain().unique());
-    console.log(_([1, 2, 3, 4, 5, 4, 5, 6, 'a', 'A']).unique(function(value) {
-      return typeof value === 'string' ? value.toLowerCase() : value
-    }))
+    // 专门为对象服务的 map 方法
+    // 迭代函数改变对象的 values 值
+    // 返回对象副本
+    var obj = {name:"max"}
+    console.log(_.map([1, 2, 3], function(value, index, object){
+      return value*3;
+    },obj));
   </script>
 </body>
 </html>

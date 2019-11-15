@@ -48,13 +48,51 @@
     return result;
   }
 
-  _.map = function(args) {
-    return args;
+  // optimizeCb优化迭代器
+  var optimizeCb = function(func, context, count) {
+    if(context === void 0) {
+      return func;
+    }
+    switch (count == null ? 3 : count) {
+      case 1:
+          return function(value) {
+            return func.call(context, value)
+          }
+        break;
+      case 3:
+          return function(value, index, obj) {
+            return func.call(context, value, index, obj)
+          }
+        break;
+    }
+  }
+
+  var cb = function(iteratee, context, count) {
+    if(iteratee == null ) {
+      return _.identity;
+    }
+    if(_.isFunction(iteratee)) {
+      return optimizeCb(iteratee, context, count);
+    }
+  }
+
+  _.map = function(obj, iteratee, context) {
+    // 生成不同功能迭代器
+    var iteratee = cb(iteratee, context);
+    //分辨 obj是数组对象, 还是object对象
+    var keys = !_.isArray(obj) && Object.keys(obj);
+    var length = (keys || obj).length;
+    var result = Array(length);
+    for(var index = 0;index < length;index++) {
+      var currentKey = keys ? keys[index] : index;
+      result[index] = iteratee(obj[currentKey], index, obj)
+    }
+    return result;
   };
 
-  // 类型检测
-  _.isArray = function(array) {
-    return toString.call(array) === '[object Array]';
+  // 默认迭代器
+  _.identity = function(value) {
+    return value;
   }
 
   _.each = function(target, callbacks) {
@@ -70,6 +108,16 @@
       }
     }
   }
+  // 类型检测
+  _.isArray = function(array) {
+    return toString.call(array) === '[object Array]';
+  }
+
+  _.each(['Arguments', 'Function', 'String', 'Number', 'Date', 'RegExp', 'Error', 'Symbol', 'Map', 'WeakMap', 'Set', 'WeakSet'], function(name) {
+    _['is' + name] = function(obj) {
+      return toString.call(obj) === '[object ' + name + ']';
+    };
+  });
 
   // mixin
   _.mixin = function(obj) {
