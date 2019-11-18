@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script src="./index.js"></script>
+  <script>
+    // 局部应用一个函数填充在任意个数的参数，不改变其动态this值
+    var add = function(a, b) {
+      return a + b;
+    }
+    var partialAdd = _.partial(add, 5);
+    console.log(partialAdd(10)); // => 15
+
+    // function add2(a, b) {
+    //   return a + b;
+    // }
+    // var BindAdd = add2.bind(this, 7);
+    // console.log(BindAdd)
+    // console.log(BindAdd(5));
+
+    var hasher = function() {
+      var n = arguments[0];
+      return `${n}-max`
+    }
+
+    var fibonacci = _.memoize(function(n) {
+      console.log('n', n)
+      return n < 2 ? n : fibonacci(n - 1) + fibonacci(n - 2);
+    }, hasher)
+    console.log(fibonacci(5))
+    console.log(fibonacci.cache)
+
+
+    // var fibonacci2 = function(n) {
+    //   return n < 2 ? n : fibonacci2(n - 1) + fibonacci2(n - 2);
+    // }
+    // console.log(fibonacci2(55))
+  </script>
+</body>
+</html>
