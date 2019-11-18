@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script src="./index.js"></script>
+  <script>
+    // 深度摊平
+    console.log(_.flatten([1, [2, 3], [4, [5]]]))
+    // 浅度摊平
+    console.log(_.flatten([1, [2, 3], [4, [5]]], true))
+    console.log(_.initial([1, 2, 3, 4, 5], 2))
+    console.log(_.rest([1, 2, 3, 4, 5], 2))
+  </script>
+</body>
+</html>
