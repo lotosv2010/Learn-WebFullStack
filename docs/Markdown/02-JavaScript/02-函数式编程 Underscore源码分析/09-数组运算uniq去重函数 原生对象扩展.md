@@ -1,71 +1,79 @@
 
 **1 目标**
-* 理解`vuex`
-* `sass`的使用及封装
-* `vue`项目优化
+* 理解`unique`
+* 理解`compact`
+* 理解`range`
 
 **2 笔记**
-* `vuex`  
-  **`vuex`是什么?**  
-    > * 是一个专为`Vue.js`应用程序开发的状态管理模式（也称全局状态管理）  
-    > * 什么是"状态管理模式"?  
-    >> * 从视图层事件源到数据变迁的映射过程的一个管理  
-    > * 运行机制  
-    >> * 采用集中式存储管理应用所有组件的状态，并以相应的规则保证状态以一种可以预测的方式发生变化（统一管理）
-
-  **什么场景下使用?**  
-    > * 多组件嵌套  
-    > * 兄弟组件传值  
-    > * 多组件共享状态  
-
-* `sass`的使用及封装  
-  **安装`sass(cli 2.x)`**
-    > * `npm install --save-dev sass-loader`(安装`sass`)  
-    > * `npm install --save-dev node-sass`(`sass-loader`依赖于`node-sass`)  
-    > * 配置`Sass`解析器 `webpack.base.conf.js`  
-
+* 理解`unique`  
+  **`_.unique`**  
+    > * 语法：`_.unique(array, isSorted, iteratee)`  
+    > * 根据iteratee设置的重复标准，对array进行取重，通过isSorted，提高对有序数组的取重效率  
     ```javascript
-    {
-      test: /\.sass$/,
-      loaders: ['style', 'css', 'sass']
+    // 源码
+    _.uniq = _.unique = function(array, isSorted, iteratee) {
+      if(!_.isBoolean(isSorted)) {
+        context = iteratee;
+        iteratee = isSorted;
+        isSorted = false;
+      }
+      if(iteratee != null) iteratee = cb(iteratee, context);
+      var result = [];
+      var seen = [];
+      // ...
+      return result;
     }
     ```
 
-  **封装**
-    > * `@mixin`混合封装  
-    ```sass
-    @mixin rounded-corners {
-      -moz-border-radius: 5px;
-      -webkit-border-radius: 5px;
-      border-radius: 5px
+* 理解`compact`  
+  **`_.compact`**  
+    > * 语法：`_.compact(array)`  
+    > * 去除`array`中所有"假值"项目  
+    > * 在`JavaScript`中，这些被认为具有"假值"意向  
+    ```javascript
+    false
+    null
+    0
+    ""
+    undefined
+    NaN
+    ```
+    > * 如何验证  
+    ```javascript
+    Boolean(false); // => false
+    Boolean(null); // => false
+    Boolean(0); // => false
+    Boolean(""); // => false
+    Boolean(undefined); // => false
+    Boolean(NaN); // => false
+    ```
+    > * 源码  
+    ```javascript
+    // 源码
+    _.compact = function(array) {
+      return _.filter(array, Boolean);
     }
     ```
-
-    > * 变量封装 
-
-    ```sass
-    $link-color: blue;
-    a{
-      color: $link-color;
-    }
-    ```
-    ```css
-    // 编译后
-    a {
-      color: blue;
-    }
+    > * 用例  
+    ```javascript
+    // 用例
+    _.compact([0, 1, false, 2, '', 3]) // => [1, 2, 3]
     ```
 
-* `vue`项目优化  
-  **从那些方面入手**
-    > * `js,css`代码公用代码提取，`ui`框架按需引入  
-    > * `js,css`代码的压缩  
-    > * 图片文件的压缩`(tinypng.com)`，太大的直接放`cdn`  
-    > * `gzip`压缩(服务端压缩)  
-    > * `cdn`加速(节点速度快，不需要占用本地资源)  
+* 理解`range`
+  **`_.range`**  
+    > * 语法：`_.range(start, stop, step)`设置步长`step`，产生一个`[start, n]`的序列  
+    > * 举例  
+    ```javascript
+    // 产生[n, m]内的数组
+    range(1, 11); // =>[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-  **`DllPlugin`**
-    > * `DLL(Dynamic Link Library)`文件为动态链接库文件，在`windows`中许多应用程序并不是一个完整的可执行文件，它们被分割成一些相对独立的动态链接库，即`DLL`文件，放置于系统中。当执行某一个程序时，相应的`DLL`文件就会被调用。  
+    // 指定步长
+    range(1, 11, 2); // => [1, 3, 5, 7, 9]
+    
+    // 从[0, n]
+    range(5); // => [1, 2, 3, 4]
+    ```
+    > * `range`函数作用：快速产生一个落在区间范围内的数组  
 
 **3 问题库**  
-* `vue`项目优化  
