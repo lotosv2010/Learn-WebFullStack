@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script src="./index.js"></script>
+  <script>
+    _.delay(function(name) {
+      console.log('delay', name)
+    }, 2000, 'robin')
+
+    var A = function(data) {
+      return 2 * data
+    }
+    var B = function(data) {
+      return 2 + data
+    }
+    var C = function(data) {
+      return 2 - data
+    }
+
+    // var res = _.compose(B, C, A, 2)
+    // console.log(res)
+
+    var compose = _.compose(A, B ,C)
+    var res = compose(2)
+    console.log(res)
+
+
+    var string = `<a href=""> baidu</a>`
+    var str = _.escape(string)
+    console.log(str)
+    console.log(_.unescape(str))
+    console.log(_(121))
+  </script>
+</body>
+</html>

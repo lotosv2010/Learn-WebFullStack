@@ -1,71 +1,29 @@
 
 **1 目标**
-* 理解`vuex`
-* `sass`的使用及封装
-* `vue`项目优化
+* 延迟执行
+* 函数组合
+* 字符串转移
 
 **2 笔记**
-* `vuex`  
-  **`vuex`是什么?**  
-    > * 是一个专为`Vue.js`应用程序开发的状态管理模式（也称全局状态管理）  
-    > * 什么是"状态管理模式"?  
-    >> * 从视图层事件源到数据变迁的映射过程的一个管理  
-    > * 运行机制  
-    >> * 采用集中式存储管理应用所有组件的状态，并以相应的规则保证状态以一种可以预测的方式发生变化（统一管理）
-
-  **什么场景下使用?**  
-    > * 多组件嵌套  
-    > * 兄弟组件传值  
-    > * 多组件共享状态  
-
-* `sass`的使用及封装  
-  **安装`sass(cli 2.x)`**
-    > * `npm install --save-dev sass-loader`(安装`sass`)  
-    > * `npm install --save-dev node-sass`(`sass-loader`依赖于`node-sass`)  
-    > * 配置`Sass`解析器 `webpack.base.conf.js`  
-
+* 延迟执行  
+  **`_.delay(function, wait, *arguments)`**  
+    > * 类似`setTimeout`，等待`wait`毫秒后调用`function`，如果传递可选参数`arguments`，当函数`function`执行时，`arguments`会作为参数传入  
     ```javascript
-    {
-      test: /\.sass$/,
-      loaders: ['style', 'css', 'sass']
+    _.delay = function(func, wait) {
+      var args = slice.call(arguments, 2)
+      return setTimeout(function() {
+        return func.apply(null, args)
+      }, wait)
     }
     ```
 
-  **封装**
-    > * `@mixin`混合封装  
-    ```sass
-    @mixin rounded-corners {
-      -moz-border-radius: 5px;
-      -webkit-border-radius: 5px;
-      border-radius: 5px
-    }
-    ```
-
-    > * 变量封装 
-
-    ```sass
-    $link-color: blue;
-    a{
-      color: $link-color;
-    }
-    ```
-    ```css
-    // 编译后
-    a {
-      color: blue;
-    }
-    ```
-
-* `vue`项目优化  
-  **从那些方面入手**
-    > * `js,css`代码公用代码提取，`ui`框架按需引入  
-    > * `js,css`代码的压缩  
-    > * 图片文件的压缩`(tinypng.com)`，太大的直接放`cdn`  
-    > * `gzip`压缩(服务端压缩)  
-    > * `cdn`加速(节点速度快，不需要占用本地资源)  
-
-  **`DllPlugin`**
-    > * `DLL(Dynamic Link Library)`文件为动态链接库文件，在`windows`中许多应用程序并不是一个完整的可执行文件，它们被分割成一些相对独立的动态链接库，即`DLL`文件，放置于系统中。当执行某一个程序时，相应的`DLL`文件就会被调用。  
+  **函数组合(`compose`)**  
+    > * `_compose(*functions)`  
+    > * 返回函数集`functions`组合后的复合函数，也就是一个函数执行完之后把返回的结果再作为参数赋值给下一个函数来执行。以此类推，在数学里，把函数`f()`,`g()`,`h()`组合起来可以得到复合函数`f(g(h()))`  
+ 
+  **字符串转义(`escape`)**
+    > * 转义字符：也有更形象的译名脱逸字符、逃逸字符等。针对某些特定字符串转义并替换为特定字符串  
+    > * `_.escape(string)`：转义`HTML`字符串，替换`&`，`<`，`>`，`"`，`'`，`/`等字符。  
 
 **3 问题库**  
 * `vue`项目优化  
