@@ -1,22 +1,28 @@
 
 **1 目标**
-* `throttle`
-* `debounce`
+* 理解`vuex`
+* `sass`的使用及封装
+* `vue`项目优化
 
 **2 笔记**
-* `throttle`  
-  **`throttle`**  
-    > * `throttle`和`debounce`是解决请求和响应速度不匹配的两个方案。二者的差异在于选择不同的策略  
-    > * `throttle`的关注点是连续的执行间隔时间  
+* `vuex`  
+  **`vuex`是什么?**  
+    > * 是一个专为`Vue.js`应用程序开发的状态管理模式（也称全局状态管理）  
+    > * 什么是"状态管理模式"?  
+    >> * 从视图层事件源到数据变迁的映射过程的一个管理  
+    > * 运行机制  
+    >> * 采用集中式存储管理应用所有组件的状态，并以相应的规则保证状态以一种可以预测的方式发生变化（统一管理）
 
   **什么场景下使用?**  
     > * 多组件嵌套  
     > * 兄弟组件传值  
     > * 多组件共享状态  
 
-* `debounce`  
-  **`debounce`**
-    > * `debounce`的关注点是空闲的间隔时间  
+* `sass`的使用及封装  
+  **安装`sass(cli 2.x)`**
+    > * `npm install --save-dev sass-loader`(安装`sass`)  
+    > * `npm install --save-dev node-sass`(`sass-loader`依赖于`node-sass`)  
+    > * 配置`Sass`解析器 `webpack.base.conf.js`  
 
     ```javascript
     {
