@@ -1,71 +1,76 @@
 
 **1 目标**
-* 理解`vuex`
-* `sass`的使用及封装
-* `vue`项目优化
+* 属性操作
+* `createAssigner`
 
 **2 笔记**
-* `vuex`  
-  **`vuex`是什么?**  
-    > * 是一个专为`Vue.js`应用程序开发的状态管理模式（也称全局状态管理）  
-    > * 什么是"状态管理模式"?  
-    >> * 从视图层事件源到数据变迁的映射过程的一个管理  
-    > * 运行机制  
-    >> * 采用集中式存储管理应用所有组件的状态，并以相应的规则保证状态以一种可以预测的方式发生变化（统一管理）
-
-  **什么场景下使用?**  
-    > * 多组件嵌套  
-    > * 兄弟组件传值  
-    > * 多组件共享状态  
-
-* `sass`的使用及封装  
-  **安装`sass(cli 2.x)`**
-    > * `npm install --save-dev sass-loader`(安装`sass`)  
-    > * `npm install --save-dev node-sass`(`sass-loader`依赖于`node-sass`)  
-    > * 配置`Sass`解析器 `webpack.base.conf.js`  
-
+* 属性操作  
+  **`has`**  
+    > * `_.has(object, key)`  
+    > * 检测`object`对象是否包含给定的key属性  
     ```javascript
-    {
-      test: /\.sass$/,
-      loaders: ['style', 'css', 'sass']
+    _.has = function(obj,key) {
+      // obj 不能为null 或者 undefined
+      return obj != null && hasOwnProperty.call(obj, key);
     }
     ```
 
-  **封装**
-    > * `@mixin`混合封装  
-    ```sass
-    @mixin rounded-corners {
-      -moz-border-radius: 5px;
-      -webkit-border-radius: 5px;
-      border-radius: 5px
+  **`invert`**  
+    > * `_.invert(object)`  
+    > * 返回一个`object`副本，使其键(`keys`)和值(`values`)对换。对于这个操作，必须确保`object`里所有的值都是唯一的且可以序列号成字符串  
+    ```javascript
+    _.invert = function(obj) {
+      var result = {}
+      var keys = _.keys(obj);
+      // ...
+      for(var i = 0; i < length; i++) {
+        result[obj[keys[i]]] = keys[i]
+      }
+      return result
     }
     ```
 
-    > * 变量封装 
-
-    ```sass
-    $link-color: blue;
-    a{
-      color: $link-color;
+  **`keys`**  
+    > * `_.keys(object)`  
+    > * 检测`object`对象所有的属性名称  
+    ```javascript
+    _.keys = function(obj) {
+      var keys = []
+      if(nativeKeys) {
+        return nativeKeys(obj)
+      }
+      // ...
+      return keys;
     }
     ```
-    ```css
-    // 编译后
-    a {
-      color: blue;
-    }
-    ```
 
-* `vue`项目优化  
-  **从那些方面入手**
-    > * `js,css`代码公用代码提取，`ui`框架按需引入  
-    > * `js,css`代码的压缩  
-    > * 图片文件的压缩`(tinypng.com)`，太大的直接放`cdn`  
-    > * `gzip`压缩(服务端压缩)  
-    > * `cdn`加速(节点速度快，不需要占用本地资源)  
+* `createAssigner` 
+  **`createAssigner`**
+    > * `underscore`中提供了两个方法用于对象属性的扩展  
+    >> * `_.extend`  
+    >> * `_.extendOwn`  
+    > * 这两个函数内部都是由`createAssigner`进行创建的  
+    > * `createAssigner`接受两个参数  
+    >> * `keysFunc`:获取对象属性的方式  
+    >> * `defaults`:声明是否覆盖属性  
+    > * 返回一个属性分配器  
+    ```javascript
+    var createAssigner = function(keysFunc, defaults) {
+    return function(obj) {
+      var length = arguments.length;
+      if (defaults) obj = Object(obj);
+      if (length < 2 || obj == null) return obj;
+      for (var index = 1; index < length; index++) {
+        var source = arguments[index],
+            keys = keysFunc(source),
+            l = keys.length;
+        for (var i = 0; i < l; i++) {
+          var key = keys[i];
+          if (!defaults || obj[key] === void 0) obj[key] = source[key];
+        }
+      }
+      return obj;
+    };
+  };
 
-  **`DllPlugin`**
-    > * `DLL(Dynamic Link Library)`文件为动态链接库文件，在`windows`中许多应用程序并不是一个完整的可执行文件，它们被分割成一些相对独立的动态链接库，即`DLL`文件，放置于系统中。当执行某一个程序时，相应的`DLL`文件就会被调用。  
-
-**3 问题库**  
-* `vue`项目优化  
+**3 问题库**    

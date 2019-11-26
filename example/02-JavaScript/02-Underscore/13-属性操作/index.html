@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script src="./index.js"></script>
+  <script>
+    var obj = {
+      name: 'robin',
+      toString: null
+    }
+
+    console.log(_.has(obj, 'name'))
+
+    // ------------------------------
+    function Person(name) {
+      this.name = name
+    }
+    Person.prototype.age = 12
+
+    var p = new Person('robin')
+
+    // 只会查找自身对象
+    console.log(Object.keys(p))
+
+    for (const key in p) {
+      console.log(key) // name age
+    }
+    // ------------------------------
+    console.log('obj keys', _.keys(obj))
+    console.log('p keys', _.keys(p))
+    console.log('obj all keys', _.allKeys(obj))
+    console.log('p all keys', _.allKeys(p))
+
+    // ------------------------------
+    console.log('obj values', _.values(obj))
+    console.log('p values', _.values(p))
+
+    // ------------------------------
+    console.log('obj invert', _.invert(obj))
+    console.log('p invert', _.invert(p))
+
+    // ------------------------------
+    console.log('obj extend', _.extend({}, obj, p))
+    console.log('obj extendOwn', _.extendOwn({}, obj, p))
+  </script>
+</body>
+</html>
