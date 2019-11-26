@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="./index.js"></script>
+  <script>
+    var obj = {
+      name: 'robin',
+      age: 18,
+      child: [
+        {
+          name: 'jack',
+          age: 8,
+          child: [
+            {
+              name: 'rose',
+              age: 1
+            }
+          ]
+        }
+      ],
+      car: {
+        name: 'jj'
+      }
+    }
+    var arr = [1, 2, 3, { name: 'robin', age: 18 }, [4, 5, [6, 7]]]
+    var cobj = _.clone(obj)
+    console.log(_.clone(obj))
+    console.log(_.clone(arr))
+    console.log(obj.child.child === cobj.child.child)
+
+    // ================================
+    console.log(_.deepClone(obj))
+    // ===============================
+    var pick1 = _.pick({ name: 'moe', age: 50, userid: 'moe1' }, 'name', 'age');
+    console.log(pick1)
+
+    var pick2 = _.pick({ name: 'moe', age: 50, userid: 'moe1' }, function (value, key, object) {
+      return _.isNumber(value);
+    });
+    console.log(pick2)
+
+  </script>
+</body>
+
+</html>
