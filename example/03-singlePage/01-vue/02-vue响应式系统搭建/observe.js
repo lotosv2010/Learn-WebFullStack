@@ -1,3 +1,7 @@
+/**
+ * data: 数据对象
+ * $watch: 方法
+ */
 var data = {
     root: 'max',
     age: 30,
@@ -21,14 +25,16 @@ function observe(data) {
 
         Object.defineProperty(data, key, {
             get: function () {
+                // console.log(target)
                 deps.push(target)
                 return val
             },
             set: function(newValue) {
                 if (newValue === val) return
                 val = newValue
+                // console.log(deps)
                 deps.forEach(function(func) {
-                    func()
+                    func(val)
                 })
             }
         })
@@ -68,12 +74,12 @@ $watch('root', function(val) {
 data.root = 'remi'
 console.log(data.root);
 
-$watch('list.a', function(val) {
-    console.log('list.a change', val);
-})
+// $watch('list.a', function(val) {
+//     console.log('list.a change', val);
+// })
 
-data.list.a = 10
-console.log(data.list.a);
+// data.list.a = 10
+// console.log(data.list.a);
 
 
 // 触发更新
